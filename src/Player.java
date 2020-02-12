@@ -3,9 +3,10 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player implements KeyboardHandler {
-    private Rectangle player;
+    private Picture player;
     private int x;
     private int y;
     private int width;
@@ -30,8 +31,8 @@ public class Player implements KeyboardHandler {
     }
 
     public void start() {
-        this.player = new Rectangle(this.x, this.y, this.width, this.height);
-        this.player.fill();
+        this.player = new Picture(this.x, this.y,"resources/player.png");
+        this.player.draw();
         init();
     }
 
