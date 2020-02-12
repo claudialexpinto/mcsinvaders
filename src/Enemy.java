@@ -11,23 +11,25 @@ public class Enemy {
     private int y;
     private int width;
     private int height;
+    private boolean movement;
 
-    public Enemy(int health, Field field) {
+    public Enemy(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
         this.dead = false;
         this.bullets = new Bullet[20];
         this.bulletCounter = 0;
-        this.x = 400;
-        this.y = 25;
+        this.x = x;
+        this.y = y;
         this.width = 100;
         this.height = 50;
+        this.movement = true;
+        this.enemy = new Rectangle(this.x, this.y, this.width, this.height);
     }
 
     public void start() {
-        this.enemy = new Rectangle(this.x, this.y, this.width, this.height);
         this.enemy.fill();
-        lateralMove();
+        move();
     }
 
     public void ShootBack() {
@@ -41,7 +43,6 @@ public class Enemy {
 
 
     public void lateralMove(){
-        //while (!dead) {
             int movement;
             for (movement = enemy.getX(); movement >= 0; movement--) {
                 int random = (int) (Math.random() * 10);
@@ -58,7 +59,7 @@ public class Enemy {
                 }
             }
             if (movement == 0) {
-                for (movement = enemy.getX(); movement < 140; movement++) {
+                for (movement = enemy.getX(); movement < field.getWidth(); movement++) {
                     int random = (int) (Math.random() * 10);
 
                     enemy.translate(10, 0);
@@ -88,7 +89,35 @@ public class Enemy {
                     }
                 }
             }
+    }
 
+    public void move(){
+
+        enemy.delete();
+        if(movement){ // RIGHT
+            if(enemy.getX() > field.getWidth() - width){
+                enemy.fill();
+                movement = false;
+                return;
+            } else {
+                    enemy.translate(100, 0);
+                    enemy.fill();
+            }
+            return;
+        }
+
+        if(!movement){ //LEFT
+            if(enemy.getX() <= field.getx() + 100){
+                enemy.fill();
+                movement = true;
+                return;
+            } else {
+                enemy.translate(-100,0);
+                enemy.fill();
+
+            }
+            return;
+        }
     }
 
     public void GetHit(int damage) {

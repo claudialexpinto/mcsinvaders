@@ -8,22 +8,25 @@ public class Game {
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
+        this.enemy = new Enemy(3, field, 700, 25);
+        this.player = new Player(field);
     }
 
- /*   public void start() throws InterruptedException {
+    public void start() throws InterruptedException {
+
+        //  while(true) {
+        player.start();
         while (true) {
-            Thread.sleep(200);
-            //player.start();
+            init();
+            Thread.sleep(300);
         }
+        // }
     }
-*/
+
     public void init() {
 
         field.init();
 
-        this.enemy = new Enemy(3, field);
-        this.player = new Player(field);
-        player.start();
-        // enemy.start();
+        enemy.start();
     }
 }
