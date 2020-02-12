@@ -1,7 +1,8 @@
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Enemy {
-    private Rectangle enemy;
+    private Picture enemy;
     private int health;
     private boolean dead;
     private Field field;
@@ -24,11 +25,11 @@ public class Enemy {
         this.width = 50;
         this.height = 25;
         this.movement = true;
-        this.enemy = new Rectangle(this.x, this.y, this.width, this.height);
+        this.enemy = new Picture(this.x, this.y, "resources/jojoNormal.png");
     }
 
     public void start() {
-        this.enemy.fill();
+        this.enemy.draw();
         move();
         int random = (int) (Math.ceil(Math.random()*10));
         System.out.println(random);
@@ -101,26 +102,26 @@ public class Enemy {
         enemy.delete();
         if(movement){ // RIGHT
             if(enemy.getX() > field.getWidth() - width){
-                enemy.fill();
+                enemy.draw();
                 movement = false;
                 return;
             } else {
                     enemy.translate(50, 0);
                     x += 50;
-                    enemy.fill();
+                    enemy.draw();
             }
             return;
         }
 
         if(!movement){ //LEFT
             if(enemy.getX() <= field.getx() + 100){
-                enemy.fill();
+                enemy.draw();
                 movement = true;
                 return;
             } else {
                 enemy.translate(-50,0);
                 x -=50;
-                enemy.fill();
+                enemy.draw();
 
             }
             return;
