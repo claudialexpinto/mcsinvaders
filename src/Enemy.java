@@ -21,8 +21,8 @@ public class Enemy {
         this.bulletCounter = 0;
         this.x = x;
         this.y = y;
-        this.width = 100;
-        this.height = 50;
+        this.width = 50;
+        this.height = 25;
         this.movement = true;
         this.enemy = new Rectangle(this.x, this.y, this.width, this.height);
     }
@@ -30,9 +30,14 @@ public class Enemy {
     public void start() {
         this.enemy.fill();
         move();
+        int random = (int) (Math.ceil(Math.random()*10));
+        System.out.println(random);
+        if(random > 8){
+            shootBack();
+        }
     }
 
-    public void ShootBack() {
+    public void shootBack() {
         if (bulletCounter == 10) {
             bulletCounter = 0;
         }
@@ -50,7 +55,7 @@ public class Enemy {
                 enemy.translate(-10, 0);
                 if (random == 5) {
                     //Thread.sleep(100);
-                    ShootBack();
+                    shootBack();
                     enemy.translate(-10, 0);
                     break;
                 }
@@ -65,7 +70,7 @@ public class Enemy {
                     enemy.translate(10, 0);
                     if (random == 5) {
                         //Thread.sleep(100);
-                        ShootBack();
+                        shootBack();
                         enemy.translate(10, 0);
                         break;
                     }
@@ -80,7 +85,7 @@ public class Enemy {
 
                     enemy.translate(-10, 1);
                     if (random == 5) {
-                        ShootBack();
+                        shootBack();
                         enemy.translate(-10, 1);
                         break;
                     }
@@ -100,7 +105,8 @@ public class Enemy {
                 movement = false;
                 return;
             } else {
-                    enemy.translate(100, 0);
+                    enemy.translate(50, 0);
+                    x += 50;
                     enemy.fill();
             }
             return;
@@ -112,7 +118,8 @@ public class Enemy {
                 movement = true;
                 return;
             } else {
-                enemy.translate(-100,0);
+                enemy.translate(-50,0);
+                x -=50;
                 enemy.fill();
 
             }

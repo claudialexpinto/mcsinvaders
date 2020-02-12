@@ -22,8 +22,8 @@ public class Player implements KeyboardHandler {
         this.keyboard = new Keyboard(this);
         this.x = 644;
         this.y = 749;
-        this.width = 200;
-        this.height = 100;
+        this.width = 100;
+        this.height = 50;
         this.distanceMoved = 1;
         this.bullets = new Bullet[20];
         this.bulletCounter = 0;

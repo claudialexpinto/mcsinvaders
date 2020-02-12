@@ -8,7 +8,7 @@ public class Game {
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
-        this.enemy = new Enemy(3, field, 700, 25);
+        this.enemy = new Enemy(3, field, 700, 50);
         this.player = new Player(field);
     }
 
