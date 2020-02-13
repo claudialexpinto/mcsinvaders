@@ -58,12 +58,36 @@ public class Bullet {
                 }
             }
         }
+        collisionDetector4(Game.player,Game.enemy);
         bullet.delete();
         bullet2.delete();
     }
 
     public Picture getBullet() {
         return this.bullet;
+    }
+
+    public void collisionDetector4(Player player, Enemy enemy) {
+
+        if (player.getBullets(player.getBulletCounter()) == null) {
+            return;
+        }
+        System.out.println("passed");
+
+        for (int i = player.getBullets(player.getBulletCounter()).getX(); i <= player.getBullets(player.getBulletCounter()).getX() + 100; i++) {
+            for (int j = enemy.getX(); j <= enemy.getX() + 100; j++) {
+                if (player.getBullets(player.getBulletCounter()).getY() <= 300 &&
+                        player.getBullets(player.getBulletCounter()).getX() >= enemy.getX() &&
+                        player.getBullets(player.getBulletCounter()).getX() <= enemy.getX() + 100) {
+                    //System.out.println("Enemy down");
+                    enemy.setHealth(enemy.getHealth() - 1);
+                    if (enemy.getHealth() < 0){
+                        enemy.setHealth(0);
+                        enemy.getEnemy().delete();
+                    }
+                }
+            }
+        }
     }
 
     public void collisionDetector(Enemy enemy, Player player) {

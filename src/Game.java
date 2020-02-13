@@ -6,9 +6,9 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game implements KeyboardHandler {
 
-    private Player player;
+    public static Player player;
     private Field field;
-    private Enemy enemy;
+    public static Enemy enemy;
     private Enemy2 enemy2;
     private Enemy3 enemy3;
     private Enemy4 enemy4;
@@ -19,7 +19,7 @@ public class Game implements KeyboardHandler {
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
-        this.enemy = new Enemy(1, this.field, 0, 50);
+        this.enemy = new Enemy(10000, this.field, 0, 50);
         this.enemy2 = new Enemy2(3, this.field, 700, 50);
         this.enemy3 = new Enemy3(10, this.field, 700, 50);
         this.enemy4 = new Enemy4(15, this.field, 700, 50);
@@ -36,8 +36,8 @@ public class Game implements KeyboardHandler {
         while (!enemyCollision && !playerCollision) {
             if (enemy.getHealth() > 0) {
                 enemy.start();
-                collisionDetector4(player, enemy);
             } else if (enemy2.getHealth() > 0) {
+                System.out.println(enemy.getHealth());
                 enemy2.start();
             } else if (enemy3.getHealth() > 0) {
                 enemy3.start();
@@ -208,5 +208,88 @@ public class Game implements KeyboardHandler {
         }
         System.out.println(enemy.getBullet(enemy.getBulletCounter()).getY());
     */
+
+    public class Bullet {
+        private Picture bullet;
+        private Picture bullet2;
+        private Field field;
+        private int x;
+        private int y;
+        private boolean enemyCollision;
+        private boolean playerCollision;
+
+        public Bullet(int x, int y, Field field) {
+            this.field = field;
+            this.bullet = new Picture(x, y, "resources/laserRed.png");
+            this.bullet2 = new Picture(x, y, "resources/laserGreen.png");
+
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public void bulletMove(Directions direction) {
+            if (direction == Directions.UP) {
+                bullet2.draw();
+                while (bullet2.getY() > 22) {
+                    bullet2.draw();
+                    try {
+                        Thread.sleep(10);
+                        this.bullet2.translate(0, -20);
+                        y -= 20;
+                        System.out.println("Bullet y: " + this.y);
+                        System.out.println("Bullet x: " + this.x);
+                    } catch (InterruptedException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    //collisionDetector();
+                    //System.out.println(bullet.getY());
+                }
+            } else if (direction == Directions.DOWN) {
+                bullet.draw();
+                while (bullet.getY() < field.getHeight() - 22) {
+                    try {
+                        Thread.sleep(10);
+                        this.bullet.translate(0, 20);
+                        y += 20;
+                    } catch (InterruptedException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+            }
+            bullet.delete();
+            bullet2.delete();
+        }
+
+        public Picture getBullet() {
+            return this.bullet;
+        }
+
+        public void collisionDetector4(Player player, Enemy enemy) {
+
+            if (player.getBullets(player.getBulletCounter()) == null) {
+                return;
+            }
+            System.out.println("passed");
+
+            for (int i = player.getBullets(player.getBulletCounter()).getX(); i <= player.getBullets(player.getBulletCounter()).getX() + 100; i++) {
+                for (int j = enemy.getX(); j <= enemy.getX() + 100; j++) {
+                    if (player.getBullets(player.getBulletCounter()).getY() <= 300 &&
+                            player.getBullets(player.getBulletCounter()).getX() >= enemy.getX() &&
+                            player.getBullets(player.getBulletCounter()).getX() <= enemy.getX() + 100) {
+                        System.out.println("Enemy down");
+                        this.enemyCollision = true;
+                    }
+                }
+            }
+        }
+    }
 }
 
