@@ -1,6 +1,9 @@
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-public class Game {
+public class Game implements KeyboardHandler {
 
     private Player player;
     private Field field;
@@ -8,6 +11,7 @@ public class Game {
     private Enemy2 enemy2;
     private Enemy3 enemy3;
     private Enemy4 enemy4;
+    private Keyboard keyboard;
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
@@ -16,6 +20,7 @@ public class Game {
         this.enemy3 = new Enemy3(10,this.field,700,50);
         this.enemy4 = new Enemy4(15, this.field, 700, 50);
         this.player = new Player(this.field);
+        this.keyboard = new Keyboard(this);
     }
 
     public void start(){
@@ -39,6 +44,25 @@ public class Game {
             //System.out.println(player.getHealth());
         }
     }
+
+    public void restart(){
+        KeyboardEvent start = new KeyboardEvent();
+        start.setKey(KeyboardEvent.KEY_R);
+        start.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(start);
+    }
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent){
+        if(keyboardEvent.getKey() == KeyboardEvent.KEY_R){
+                this.player.setHealth(3);
+                this.enemy.setHealth(0);
+                start();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent){}
 
     private void collisionDetector(Player player, Enemy enemy){
         if(player.getBullets(player.getBulletCounter()) == null ) {
