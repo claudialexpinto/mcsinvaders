@@ -12,7 +12,7 @@ public class Game {
     public Game(double width, double height) {
         this.field = new Field(width, height);
         this.enemy = new Enemy(3, field, 700, 50);
-        this.enemy2 = new Enemy2(3,field,700,50);
+        this.enemy2 = new Enemy2(3, field, 700, 50);
         this.player = new Player(field);
         this.enemy3 = new Enemy3(3, field, 700, 50);
         this.enemy4 = new Enemy4(3, field, 700, 50);
@@ -33,18 +33,17 @@ public class Game {
 
         field.init();
 
-        enemy4.start();
+        enemy.start();
 
         collisionDetector(player, enemy);
     }
 
     private void collisionDetector(Player player, Enemy enemy) {
         if (enemy.getBullet(enemy.getBulletCounter()) == null) {
-            // System.out.println("nuul");
             return;
         } else if (player.getPlayer().getX() == (enemy.getBullet(enemy.getBulletCounter()).getX()) &&
                 player.getPlayer().getY() == enemy.getBullet(enemy.getBulletCounter()).getY()) {
-            // System.out.println("kabum");
+            player.setHealth(player.getHealth() - 1);
         }
 
 
@@ -52,7 +51,7 @@ public class Game {
             return;
         } else if (enemy.getEnemy().getX() == (player.getBullets(player.getBulletCounter()).getX()) &&
                 enemy.getEnemy().getY() == player.getBullets(player.getBulletCounter()).getY()) {
-            //   System.out.println("tatatatatau");
+            enemy.setHealth(enemy.getHealth() - 1);
         }
         //System.out.println(enemy.getEnemy().getX() + " enemy x");
         // System.out.println(enemy.getEnemy().getY() + " enemy y");

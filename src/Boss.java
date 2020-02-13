@@ -14,5 +14,11 @@ public class Boss {
     private int height;
     private boolean movement;
 
+    public int getHealth() {
+        return health;
+    }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
 }

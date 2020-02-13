@@ -21,20 +21,19 @@ public class Bullet {
     public void bulletMove(Directions direction, int distanceByMove) {
 
             if(direction == Directions.UP) {
-                while (bullet.getY() > 15) {
+                while (bullet.getY() > 30) {
                     bullet.fill();
                     this.y = this.y - distanceByMove;
                     bullet.translate(0, y - distanceByMove);
-
-                    bullet.delete();
+                    //bullet.delete();
                 }
             }
             if(direction.equals(Directions.DOWN)){
-                while (bullet.getY() < 830) {
+                while (bullet.getY() < 800) {
                     bullet.fill();
                     this.y = this.y + distanceByMove;
                     bullet.translate(0, y + distanceByMove);
-                    bullet.delete();
+                   // bullet.delete();
                 }
             }
             bullet.fill();

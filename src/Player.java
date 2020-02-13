@@ -16,6 +16,7 @@ public class Player implements KeyboardHandler {
     private int distanceMoved;
     private Bullet[] bullets;
     private int bulletCounter;
+    private int health;
 
 
     public Player(Field field) {
@@ -28,6 +29,7 @@ public class Player implements KeyboardHandler {
         this.distanceMoved = 1;
         this.bullets = new Bullet[20];
         this.bulletCounter = 0;
+        this.health = 3;
     }
 
     public void start() {
@@ -105,6 +107,14 @@ public class Player implements KeyboardHandler {
 
     public Bullet getBullets(int i) {
         return bullets[i];
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     @Override
