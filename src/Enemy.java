@@ -28,6 +28,16 @@ public class Enemy {
         this.enemy = new Picture(this.x, this.y, "resources/jojoNormal.png");
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+
+
     public void start() {
         this.enemy.draw();
             int random = (int) (Math.ceil(Math.random()*20));
@@ -42,7 +52,7 @@ public class Enemy {
         if (bulletCounter == 10) {
             bulletCounter = 0;
         }
-        bullets[bulletCounter] = new Bullet(this.x  , this.y + 2, this.field);
+        bullets[bulletCounter] = new Bullet(enemy.getX() + (enemy.getWidth()/2) , enemy.getY() + enemy.getHeight(), this.field);
         bullets[bulletCounter].bulletMove(Directions.DOWN);
         bulletCounter++;
     }
@@ -54,8 +64,8 @@ public class Enemy {
                 movement = false;
                 return;
             } else {
-                enemy.translate(50, 0);
-                x += 50;
+                enemy.translate(100, 0);
+                x += 100;
                 enemy.draw();
             }
             return;
@@ -63,12 +73,12 @@ public class Enemy {
 
         if(!movement){ //LEFT
             if(enemy.getX() <= this.field.getx() + 100){
-                enemy.draw();
                 movement = true;
                 return;
             } else {
-                enemy.translate(-50,0);
-                x -=50;
+                enemy.draw();
+                enemy.translate(-100,0);
+                x -=100;
                 enemy.draw();
             }
             return;
@@ -84,6 +94,22 @@ public class Enemy {
 
     public Bullet getBullet(int i) {
         return bullets[i];
+    }
+
+    public Picture getEnemy() {
+        return enemy;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getBulletCounter() {
+        return bulletCounter;
     }
 
     public boolean isDead() {

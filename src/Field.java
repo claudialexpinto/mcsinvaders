@@ -1,4 +1,5 @@
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.text.FieldPosition;
 
@@ -9,7 +10,7 @@ public class Field {
     private double width;
     private double height;
 
-    private Rectangle field;
+    private Picture field;
 
     public Field(double width, double height){
         this.width = width;
@@ -17,7 +18,7 @@ public class Field {
     }
 
     public void init(){
-        this.field = new Rectangle(PADDING,PADDING,width,height);
+        this.field = new Picture(PADDING,PADDING,"resources/background.png");
         this.field.draw();
     }
 

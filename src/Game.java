@@ -12,22 +12,34 @@ public class Game {
         this.player = new Player(this.field);
     }
 
-    public void start() throws InterruptedException {
+    public void start(){
         field.init();
         //  while(true) {
         player.start();
         while (true)  {
-            //Thread.sleep(200);
            enemy.start();
            player.shot();
+           collisionDetector(player,enemy);
+            //System.out.println(enemy.getHealth());
+            //System.out.println(player.getHealth());
         }
-        // }
     }
-/*
-    public void init() {
 
-       ;
+    private void collisionDetector(Player player, Enemy enemy){
 
-
+        if(enemy.getBullet(enemy.getBulletCounter()) == null ){
+            return;
+        }else if(player.getPlayer().getX() == (enemy.getBullet(enemy.getBulletCounter()).getX()) &&
+        player.getPlayer().getY() == enemy.getBullet(enemy.getBulletCounter()).getY()){
+            player.setHealth(player.getHealth() - 1);
+        }
+        if(player.getBullets(player.getBulletCounter()) == null){
+            return;
+        }else if(enemy.getEnemy().getX() == (player.getBullets(player.getBulletCounter()).getX()) &&
+        enemy.getEnemy().getY() == player.getBullets(player.getBulletCounter()).getY()){
+            enemy.setHealth(enemy.getHealth() - 1);
+        }
+        System.out.println(enemy.getBullet(enemy.getBulletCounter()).getY());
     }
-*/}
+
+}

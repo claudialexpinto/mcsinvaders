@@ -16,9 +16,11 @@ public class Player implements KeyboardHandler {
     private Bullet[] bullets;
     private int bulletCounter;
     private Bullet bullet;
+    private int health;
 
 
     public Player(Field field) {
+        this.health = 3;
         this.field = field;
         this.keyboard = new Keyboard(this);
         this.x = 644;
@@ -29,12 +31,36 @@ public class Player implements KeyboardHandler {
         this.bulletCounter = 0;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public void start() {
         this.player = new Picture(this.x, this.y,"resources/player.png");
         this.player.draw();
         init();
     }
 
+    public int getBulletCounter() {
+        return bulletCounter;
+    }
+
+    public Picture getPlayer() {
+        return player;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+
+    public int getX() {
+        return x;
+    }
 
     public void init( ){
 
@@ -63,11 +89,15 @@ public class Player implements KeyboardHandler {
         stop2.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);*/
     }
 
+    public Bullet getBullets(int i) {
+        return bullets[i];
+    }
+
     public void shot(){
         if(bulletCounter == 10){
             bulletCounter = 0;
         }
-        bullets[bulletCounter] = new Bullet(player.getX(),player.getY() - 10,field);
+        bullets[bulletCounter] = new Bullet(player.getX() + (player.getWidth()/2),player.getY()  - 10,field);
         bullets[bulletCounter].bulletMove(Directions.UP);
         bulletCounter++;
     }
@@ -79,14 +109,15 @@ public class Player implements KeyboardHandler {
         }*/
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
-                player.translate(- 10, 0);
-                //rectangle.set
+                if(player.getX() > 15) {
+                    player.translate(-10, 0);
+                }
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 if(player.getX() < field.getWidth() - player.getWidth()) {
                     player.translate(10, 0);
-                    break;
                 }
+                break;
         }
     }
 

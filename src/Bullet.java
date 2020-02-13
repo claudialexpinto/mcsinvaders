@@ -16,21 +16,29 @@ public class Bullet {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public void bulletMove(Directions direction) {
         if (direction == Directions.UP) {
             bullet.load("resources/laserGreen.png");
             bullet.draw();
-            while (bullet.getY() > 20) {
+            while (bullet.getY() > 22) {
                 bullet.draw();
-                this.bullet.translate(0, -0.001);
+                this.bullet.translate(0, -0.00035);
             }
         } else if (direction == Directions.DOWN) {
-            while (bullet.getY() < field.getHeight() - 20) {
+            while (bullet.getY() < field.getHeight() - 22) {
                 bullet.draw();
-                bullet.translate(0, 0.001);
-
+                bullet.translate(0, 0.00035);
             }
         }
+        bullet.delete();
     }
 
     public Picture getBullet() {
