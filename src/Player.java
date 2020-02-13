@@ -9,13 +9,13 @@ public class Player implements KeyboardHandler {
     private Picture player;
     private int x;
     private int y;
-    private int width;
-    private int height;
+    //private int width;
+    //private int height;
     private Field field;
     private Keyboard keyboard;
-    private int distanceMoved;
     private Bullet[] bullets;
     private int bulletCounter;
+    private Bullet bullet;
 
 
     public Player(Field field) {
@@ -23,9 +23,8 @@ public class Player implements KeyboardHandler {
         this.keyboard = new Keyboard(this);
         this.x = 644;
         this.y = 749;
-        this.width = 100;
-        this.height = 50;
-        this.distanceMoved = 1;
+        //this.width = 100;
+        //this.height = 50;
         this.bullets = new Bullet[20];
         this.bulletCounter = 0;
     }
@@ -49,9 +48,11 @@ public class Player implements KeyboardHandler {
         right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(right);
 
-        KeyboardEvent shoot = new KeyboardEvent();
+        /*KeyboardEvent shoot = new KeyboardEvent();
         shoot.setKey(KeyboardEvent.KEY_SPACE);
         shoot.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(shoot);
+
 
         /*KeyboardEvent stop = new KeyboardEvent();
         stop.setKey(KeyboardEvent.KEY_LEFT);
@@ -60,24 +61,22 @@ public class Player implements KeyboardHandler {
         KeyboardEvent stop2 = new KeyboardEvent();
         stop2.setKey(KeyboardEvent.KEY_RIGHT);
         stop2.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);*/
-
-        keyboard.addEventListener(shoot);
     }
 
     public void shot(){
         if(bulletCounter == 10){
             bulletCounter = 0;
         }
-        bullets[bulletCounter] = new Bullet(player.getX() + 100,player.getY(),field);
-        bullets[bulletCounter].bulletMove(Directions.UP,10);
+        bullets[bulletCounter] = new Bullet(player.getX(),player.getY() - 10,field);
+        bullets[bulletCounter].bulletMove(Directions.UP);
         bulletCounter++;
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
+        /*if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
             shot();
-        }
+        }*/
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
                 player.translate(- 10, 0);
