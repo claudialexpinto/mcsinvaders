@@ -28,5 +28,33 @@ public class Game {
         field.init();
 
         enemy.start();
+
+        collisionDetector(player,enemy);
     }
+
+    private void collisionDetector(Player player, Enemy enemy) {
+        if (enemy.getBullet(enemy.getBulletCounter()) == null) {
+            System.out.println("nuul");
+            return;
+        } else if (player.getPlayer().getX() == (enemy.getBullet(enemy.getBulletCounter()).getX()) &&
+                player.getPlayer().getY() == enemy.getBullet(enemy.getBulletCounter()).getY()) {
+            System.out.println("kabum");
+        }
+
+
+        if (player.getBullets(player.getBulletCounter()) == null) {
+            return;
+        } else if (enemy.getEnemy().getX() == (player.getBullets(player.getBulletCounter()).getX()) &&
+                enemy.getEnemy().getY() == player.getBullets(player.getBulletCounter()).getY()) {
+            System.out.println("tatatatatau");
+        }
+        System.out.println(enemy.getEnemy().getX() + " enemy x");
+        System.out.println(enemy.getEnemy().getY() + " enemy y");
+        System.out.println(player.getBullets(player.getBulletCounter()).getX() + " player bullet x");
+        System.out.println(player.getBullets(player.getBulletCounter()).getY() + " player bullet y");
+        //System.out.println(player.getPlayer().getY() + " player y");
+        //System.out.println(enemy.getBullet(enemy.getBulletCounter()).getY() + " enemy bullet y");
+        //System.out.println(enemy.getBullet(enemy.getBulletCounter()).getX() + " enemy bullet x");
+    }
+
 }

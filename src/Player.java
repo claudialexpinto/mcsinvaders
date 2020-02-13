@@ -68,9 +68,10 @@ public class Player implements KeyboardHandler {
         if(bulletCounter == 10){
             bulletCounter = 0;
         }
+        bulletCounter++;
         bullets[bulletCounter] = new Bullet(player.getX() + 100,player.getY(),field);
         bullets[bulletCounter].bulletMove(Directions.UP,10);
-        bulletCounter++;
+
     }
 
     @Override
@@ -81,14 +82,28 @@ public class Player implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
                 player.translate(- 10, 0);
+                this.x -= 10;
                 //rectangle.set
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 if(player.getX() < field.getWidth() - player.getWidth()) {
                     player.translate(10, 0);
+                    this.x += 10;
                     break;
                 }
         }
+    }
+
+    public Picture getPlayer() {
+        return player;
+    }
+
+    public int getBulletCounter() {
+        return bulletCounter;
+    }
+
+    public Bullet getBullets(int i) {
+        return bullets[i];
     }
 
     @Override

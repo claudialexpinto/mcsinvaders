@@ -32,7 +32,6 @@ public class Enemy {
         this.enemy.draw();
         move();
         int random = (int) (Math.ceil(Math.random()*10));
-        System.out.println(random);
         if(random > 8){
             shootBack();
         }
@@ -42,9 +41,10 @@ public class Enemy {
         if (bulletCounter == 10) {
             bulletCounter = 0;
         }
+        bulletCounter++;
         bullets[bulletCounter] = new Bullet(this.x, this.y, field);
         bullets[bulletCounter].bulletMove(Directions.DOWN, 10);
-        bulletCounter++;
+
     }
 
 
@@ -137,6 +137,14 @@ public class Enemy {
 
     public Bullet getBullet(int i) {
         return bullets[i];
+    }
+
+    public int getBulletCounter() {
+        return bulletCounter;
+    }
+
+    public Picture getEnemy() {
+        return enemy;
     }
 
     public boolean isDead() {

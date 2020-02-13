@@ -7,11 +7,15 @@ public class Bullet {
     private FieldPosition bulletPos;
     private int distanceByMove;
     private Directions bulletDirection;
+    private int x;
+    private int y;
 
     public Bullet(int x, int y, Field field) {
         this.distanceByMove = 1;
-        bullet = new Rectangle(x, y, 30, 30);
-        bullet.fill();
+        this.x = x;
+        this.y = y;
+        bullet = new Rectangle(this.x, this.y, 30, 30);
+        bullet.delete();
     }
 
     public void bulletMove(Directions direction, int distanceByMove) {
@@ -19,17 +23,30 @@ public class Bullet {
             if(direction == Directions.UP) {
                 while (bullet.getY() > 15) {
                     bullet.fill();
-                    bullet.translate(0, -distanceByMove);
+                    this.y = this.y - distanceByMove;
+                    bullet.translate(0, - distanceByMove);
+
                     bullet.delete();
                 }
             }
             if(direction.equals(Directions.DOWN)){
                 while (bullet.getY() < 830) {
                     bullet.fill();
+                    this.y = this.y + distanceByMove;
                     bullet.translate(0, distanceByMove);
                     bullet.delete();
                 }
             }
             bullet.fill();
         }
+
+
+
+    public int getX() {
+        return x;
     }
+
+    public int getY() {
+        return y;
+    }
+}
