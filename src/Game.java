@@ -11,8 +11,8 @@ public class Game {
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
-        this.enemy = new Enemy(3, this.field, 700, 50);
-        this.enemy2 = new Enemy2(5,this.field, 700, 50);
+        this.enemy = new Enemy(1, this.field, 700, 50);
+        this.enemy2 = new Enemy2(3,this.field, 700, 50);
         this.enemy3 = new Enemy3(10,this.field,700,50);
         this.enemy4 = new Enemy4(15, this.field, 700, 50);
         this.player = new Player(this.field);
@@ -23,7 +23,16 @@ public class Game {
         //  while(true) {
         player.start();
         while (true)  {
-           enemy4.start();
+            if(enemy.getHealth() > 0){
+                enemy.start();
+            } else if (enemy2.getHealth() > 0){
+                enemy2.start();
+            } else if (enemy3.getHealth() > 0){
+                enemy3.start();
+            } else if(enemy4.getHealth() > 0){
+                enemy4.start();
+            }
+           //enemy4.start();
            player.shot();
            collisionDetector(player,enemy);
             //System.out.println(enemy.getHealth());

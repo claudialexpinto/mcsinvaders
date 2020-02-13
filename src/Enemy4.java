@@ -87,4 +87,8 @@ public class Enemy4{
     public boolean isDead() {
         return dead;
     }
+
+    public int getHealth() {
+        return health;
+    }
 }
