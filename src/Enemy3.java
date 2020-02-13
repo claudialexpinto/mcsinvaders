@@ -1,5 +1,5 @@
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-public class Enemy2 {
+public class Enemy3{
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -11,7 +11,7 @@ public class Enemy2 {
     private int width;
     private int height;
     private boolean movement;
-    public Enemy2(int health, Field field, int x, int y) {
+    public Enemy3(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
         this.dead = false;
@@ -22,13 +22,13 @@ public class Enemy2 {
         this.width = 50;
         this.height = 25;
         this.movement = true;
-        this.enemy = new Picture(this.x, this.y, "resources/ritaNormal.png");
+        this.enemy = new Picture(this.x, this.y, "resources/rickyMoveRightN.png");
     }
     public void start() {
         this.enemy.draw();
         move();
         int random = (int) (Math.ceil(Math.random() * 10));
-        if (random > 6) {
+        if (random > 7) {
             shootBack();
         }
     }
@@ -42,6 +42,12 @@ public class Enemy2 {
     }
     public void move() {
         enemy.delete();
+        int random = (int)(Math.ceil(Math.random()*10));
+        if (random < 5){
+            movement = true;
+        } else {
+            movement = false;
+        }
         if (movement) { // RIGHT
             if (enemy.getX() > field.getWidth() - enemy.getWidth()) {
                 enemy.draw();
