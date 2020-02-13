@@ -9,6 +9,8 @@ public class MainTester {
         Game g = new Game(1489,838);
 
         g.start();
+        g.restart();
+
 
     }
 }

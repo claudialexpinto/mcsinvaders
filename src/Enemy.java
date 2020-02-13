@@ -1,7 +1,7 @@
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Enemy extends Boss{
+public class Enemy {
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -10,125 +10,95 @@ public class Enemy extends Boss{
     private int bulletCounter;
     private int x;
     private int y;
-    private int width;
-    private int height;
+    //private int width;
+    //private int height;
     private boolean movement;
 
     public Enemy(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
         this.dead = false;
-        this.bullets = new Bullet[20];
+        this.bullets = new Bullet[10];
         this.bulletCounter = 0;
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 25;
+        //this.width = 50;
+        //this.height = 25;
         this.movement = true;
         this.enemy = new Picture(this.x, this.y, "resources/jojoNormal.png");
+        //for(int i = 0; i < bulletCounter; i++){
+          //  bullets[i] = new Bullet(enemy.getX() + (enemy.getWidth()/2) , enemy.getY() + enemy.getHeight(), this.field);
+        //}
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+
 
     public void start() {
         this.enemy.draw();
-        move();
-        int random = (int) (Math.ceil(Math.random()*10));
-        if(random > 8){
-            shootBack();
-        }
+            int random = (int) (Math.ceil(Math.random()*20));
+            //System.out.println(random);
+            if(random >10) {
+                shootBack();
+               // move();
+            }
     }
 
-    public void shootBack(){
-        if (bulletCounter == 10) {
+    public void shootBack() {
+        if (bulletCounter == 9) {
             bulletCounter = 0;
         }
+        bullets[bulletCounter] = new Bullet(enemy.getX() + (enemy.getWidth()/2) , enemy.getY() + enemy.getHeight(), this.field);
+        bullets[bulletCounter].bulletMove(Directions.DOWN);
         bulletCounter++;
-        bullets[bulletCounter] = new Bullet(this.x, this.y, field);
-        bullets[bulletCounter].bulletMove(Directions.DOWN, 10);
-
     }
 
-
-   /* public void lateralMove(){
-            int movement;
-            for (movement = enemy.getX(); movement >= 0; movement--) {
-                int random = (int) (Math.random() * 10);
-
-                enemy.translate(-10, 0);
-                if (random == 5) {
-                    //Thread.sleep(100);
-                    shootBack();
-                    enemy.translate(-10, 0);
-                    break;
-                }
-                if (movement == 0) {
-                    break;
-                }
-            }
-            if (movement == 0) {
-                for (movement = enemy.getX(); movement < field.getWidth(); movement++) {
-                    int random = (int) (Math.random() * 10);
-
-                    enemy.translate(10, 0);
-                    if (random == 5) {
-                        //Thread.sleep(100);
-                        shootBack();
-                        enemy.translate(10, 0);
-                        break;
-                    }
-                    if (movement == 139) {
-                        break;
-                    }
-                }
-            }
-            if (movement == 139) {
-                for (movement = enemy.getX(); movement >= 0; movement--) {
-                    int random = (int) (Math.random() * 10);
-
-                    enemy.translate(-10, 1);
-                    if (random == 5) {
-                        shootBack();
-                        enemy.translate(-10, 1);
-                        break;
-                    }
-                    if (movement == 0) {
-                        break;
-                    }
-                }
-            }
-    }*/
-
     public void move(){
-
-        enemy.delete();
+        System.out.println("Enemy: " + x);
         if(movement){ // RIGHT
-            if(enemy.getX() > field.getWidth() - width){
+            if(enemy.getX() > this.field.getWidth() - enemy.getWidth()){
                 enemy.draw();
                 movement = false;
                 return;
             } else {
-                    enemy.translate(50, 0);
-                    x += 50;
+                try{
+                    Thread.sleep(10);
+                    enemy.translate(100, 0);
+                    x += 100;
                     enemy.draw();
+                }catch (InterruptedException ex){
+                    System.out.println(ex.getMessage());
+                }
             }
             return;
         }
 
         if(!movement){ //LEFT
-            if(enemy.getX() <= field.getx() + 100){
-                enemy.draw();
+            if(enemy.getX() <= this.field.getx() + 100){
                 movement = true;
                 return;
             } else {
-                enemy.translate(-50,0);
-                x -=50;
-                enemy.draw();
-
+                try{
+                    Thread.sleep(10);
+                    enemy.translate(-100, 0);
+                    x -= 100;
+                    enemy.draw();
+                }catch (InterruptedException ex){
+                    System.out.println(ex.getMessage());
+                }
             }
             return;
         }
     }
 
-    public void getHit(int damage) {
+    public void GetHit(int damage) {
         health = damage - health;
         if (health == 0) {
             dead = true;
@@ -139,16 +109,28 @@ public class Enemy extends Boss{
         return bullets[i];
     }
 
-    public int getBulletCounter() {
-        return bulletCounter;
-    }
-
     public Picture getEnemy() {
         return enemy;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getBulletCounter() {
+        return bulletCounter;
+    }
+
     public boolean isDead() {
         return dead;
+    }
+
+    public void setEnemy(Picture enemy) {
+        this.enemy = enemy;
     }
 }
 

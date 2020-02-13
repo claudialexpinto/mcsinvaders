@@ -1,7 +1,5 @@
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-public class Enemy3 extends Boss{
-
+public class Enemy3{
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -13,7 +11,6 @@ public class Enemy3 extends Boss{
     private int width;
     private int height;
     private boolean movement;
-
     public Enemy3(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
@@ -25,9 +22,8 @@ public class Enemy3 extends Boss{
         this.width = 50;
         this.height = 25;
         this.movement = true;
-        this.enemy = new Picture(this.x, this.y, "resources/jojoNormal.png");
+        this.enemy = new Picture(this.x, this.y, "resources/rickyMoveRightN.png");
     }
-
     public void start() {
         this.enemy.draw();
         move();
@@ -36,19 +32,15 @@ public class Enemy3 extends Boss{
             shootBack();
         }
     }
-
     public void shootBack() {
         if (bulletCounter == 10) {
             bulletCounter = 0;
         }
         bulletCounter++;
-        bullets[bulletCounter] = new Bullet(this.x, this.y, field);
-        bullets[bulletCounter].bulletMove(Directions.DOWN, 10);
-
+        bullets[bulletCounter] = new Bullet(enemy.getX() + (enemy.getWidth()/2) , enemy.getY() + enemy.getHeight(), this.field);
+        bullets[bulletCounter].bulletMove(Directions.DOWN);
     }
-
     public void move() {
-
         enemy.delete();
         int random = (int)(Math.ceil(Math.random()*10));
         if (random < 5){
@@ -57,7 +49,7 @@ public class Enemy3 extends Boss{
             movement = false;
         }
         if (movement) { // RIGHT
-            if (enemy.getX() > field.getWidth() - width) {
+            if (enemy.getX() > field.getWidth() - enemy.getWidth()) {
                 enemy.draw();
                 movement = false;
                 return;
@@ -68,9 +60,8 @@ public class Enemy3 extends Boss{
             }
             return;
         }
-
         if (!movement) { //LEFT
-            if (enemy.getX() <= field.getx() + 100) {
+            if (enemy.getX() <= field.getx() + 15) {
                 enemy.draw();
                 movement = true;
                 return;
@@ -78,32 +69,30 @@ public class Enemy3 extends Boss{
                 enemy.translate(-100, 0);
                 x -= 100;
                 enemy.draw();
-
             }
             return;
         }
     }
-
     public void GetHit(int damage) {
         health = damage - health;
         if (health == 0) {
             dead = true;
         }
     }
-
     public Bullet getBullet(int i) {
         return bullets[i];
     }
-
     public int getBulletCounter() {
         return bulletCounter;
     }
-
     public Picture getEnemy() {
         return enemy;
     }
-
     public boolean isDead() {
         return dead;
+    }
+
+    public int getHealth() {
+        return health;
     }
 }
