@@ -65,12 +65,13 @@ public class Player implements KeyboardHandler {
     }
 
     public void shot(){
-        if(bulletCounter == 10){
-            bulletCounter = 0;
-        }
-        bulletCounter++;
-        bullets[bulletCounter] = new Bullet(player.getX() + 100,player.getY(),field);
-        bullets[bulletCounter].bulletMove(Directions.UP,10);
+            if (bulletCounter == 10) {
+                bulletCounter = 0;
+            }
+            bulletCounter++;
+            bullets[bulletCounter] = new Bullet(player.getX() + 100, player.getY(), field);
+            bullets[bulletCounter].bulletMove(Directions.UP, 10);
+            System.out.println("Desespero");
 
     }
 

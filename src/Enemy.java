@@ -1,7 +1,7 @@
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Enemy {
+public class Enemy extends Boss{
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -37,7 +37,7 @@ public class Enemy {
         }
     }
 
-    public void shootBack() {
+    public void shootBack(){
         if (bulletCounter == 10) {
             bulletCounter = 0;
         }
@@ -48,7 +48,7 @@ public class Enemy {
     }
 
 
-    public void lateralMove(){
+   /* public void lateralMove(){
             int movement;
             for (movement = enemy.getX(); movement >= 0; movement--) {
                 int random = (int) (Math.random() * 10);
@@ -95,7 +95,7 @@ public class Enemy {
                     }
                 }
             }
-    }
+    }*/
 
     public void move(){
 
@@ -128,7 +128,7 @@ public class Enemy {
         }
     }
 
-    public void GetHit(int damage) {
+    public void getHit(int damage) {
         health = damage - health;
         if (health == 0) {
             dead = true;

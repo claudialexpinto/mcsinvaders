@@ -24,7 +24,7 @@ public class Bullet {
                 while (bullet.getY() > 15) {
                     bullet.fill();
                     this.y = this.y - distanceByMove;
-                    bullet.translate(0, - distanceByMove);
+                    bullet.translate(0, y - distanceByMove);
 
                     bullet.delete();
                 }
@@ -33,7 +33,7 @@ public class Bullet {
                 while (bullet.getY() < 830) {
                     bullet.fill();
                     this.y = this.y + distanceByMove;
-                    bullet.translate(0, distanceByMove);
+                    bullet.translate(0, y + distanceByMove);
                     bullet.delete();
                 }
             }
