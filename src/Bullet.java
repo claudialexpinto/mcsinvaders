@@ -1,35 +1,54 @@
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.keyboard.*;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bullet {
-    private Rectangle bullet;
-    private FieldPosition bulletPos;
-    private int distanceByMove;
-    private Directions bulletDirection;
+    private Picture bullet;
+    private Field field;
+    private int x;
+    private int y;
 
     public Bullet(int x, int y, Field field) {
-        this.distanceByMove = 1;
-        bullet = new Rectangle(x, y, 30, 30);
-        bullet.fill();
+        this.field = field;
+        this.bullet = new Picture(x, y, "resources/laserRed.png");
+        this.x = x;
+        this.y = y;
     }
 
-    public void bulletMove(Directions direction, int distanceByMove) {
+    public int getX() {
+        return x;
+    }
 
-            if(direction == Directions.UP) {
-                while (bullet.getY() > 15) {
-                    bullet.fill();
-                    bullet.translate(0, -distanceByMove);
-                    bullet.delete();
-                }
+    public int getY() {
+        return y;
+    }
+
+    public void bulletMove(Directions direction) {
+        if (direction == Directions.UP) {
+            bullet.load("resources/laserGreen.png");
+            bullet.draw();
+            while (bullet.getY() > 22) {
+                bullet.draw();
+                this.bullet.translate(0, -0.00035);
             }
-            if(direction.equals(Directions.DOWN)){
-                while (bullet.getY() < 830) {
-                    bullet.fill();
-                    bullet.translate(0, distanceByMove);
-                    bullet.delete();
-                }
+        } else if (direction == Directions.DOWN) {
+            while (bullet.getY() < field.getHeight() - 22) {
+                bullet.draw();
+                bullet.translate(0, 0.00035);
             }
-            bullet.fill();
         }
+        bullet.delete();
     }
+
+    public Picture getBullet() {
+        return this.bullet;
+    }
+
+/*    public void movement() {
+        while (bullet.getY()<field.getHeight()-20) {
+            bullet.draw();
+            bullet.translate(0, 0.0001);
+        }
+    }*/
+}
