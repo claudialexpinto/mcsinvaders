@@ -1,5 +1,10 @@
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies;
+
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Bullet;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Directions;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-public class Enemy3{
+public class Ricardo extends Boss{
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -11,7 +16,7 @@ public class Enemy3{
     private int width;
     private int height;
     private boolean movement;
-    public Enemy3(int health, Field field, int x, int y) {
+    public Ricardo(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
         this.dead = false;

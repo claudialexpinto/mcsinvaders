@@ -1,3 +1,5 @@
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class FieldPosition {

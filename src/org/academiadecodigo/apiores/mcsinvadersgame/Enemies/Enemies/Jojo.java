@@ -1,7 +1,11 @@
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies;
+
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Bullet;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Directions;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Enemy {
+public class Jojo extends Boss{
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -14,7 +18,7 @@ public class Enemy {
     //private int height;
     private boolean movement;
 
-    public Enemy(int health, Field field, int x, int y) {
+    public Jojo(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
         this.dead = false;
@@ -47,7 +51,7 @@ public class Enemy {
             //System.out.println(random);
             if(random >10) {
                 shootBack();
-               // move();
+                move();
             }
     }
 
@@ -61,7 +65,7 @@ public class Enemy {
     }
 
     public void move(){
-        System.out.println("Enemy: " + x);
+        System.out.println("Jojo: " + x);
         if(movement){ // RIGHT
             if(enemy.getX() > this.field.getWidth() - enemy.getWidth()){
                 enemy.draw();
@@ -98,8 +102,8 @@ public class Enemy {
         }
     }
 
-    public void GetHit(int damage) {
-        health = damage - health;
+    public void getHit(int damage) {
+        health--;
         if (health == 0) {
             dead = true;
         }

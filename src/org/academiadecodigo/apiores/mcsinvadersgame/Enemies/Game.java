@@ -1,3 +1,6 @@
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies.*;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -8,32 +11,38 @@ public class Game implements KeyboardHandler {
 
     public static Player player;
     private Field field;
-    public static Enemy enemy;
-    private Enemy2 enemy2;
-    private Enemy3 enemy3;
-    private Enemy4 enemy4;
+    public static Boss enemy;
+    private Boss enemy2;
+    private Boss enemy3;
+    private Boss enemy4;
     private Keyboard keyboard;
-    private boolean enemyCollision;
-    private boolean playerCollision;
-    Picture newPic = new Picture(700, 100, "resources/ritaNormal.png");
+    private boolean enemyDead;
+    private boolean playerDead;
+    public static boolean playerHit;
+    public static boolean enemyHit;
+    public static int boss;
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
-        this.enemy = new Enemy(10000, this.field, 0, 50);
-        this.enemy2 = new Enemy2(3, this.field, 700, 50);
-        this.enemy3 = new Enemy3(10, this.field, 700, 50);
-        this.enemy4 = new Enemy4(15, this.field, 700, 50);
+        this.enemy = new Jojo(10, this.field, 700, 50);
+        this.enemy2 = new Rita(3, this.field, 700, 50);
+        this.enemy3 = new Ricardo(10, this.field, 700, 50);
+        this.enemy4 = new Soraia(15, this.field, 700, 50);
         this.player = new Player(this.field);
         this.keyboard = new Keyboard(this);
-        this.enemyCollision = false;
-        this.playerCollision = false;
+        this.enemyDead = false;
+        this.playerDead = false;
+        this.boss = 1;
     }
 
     public void start() {
         field.init();
         //  while(true) {
         player.start();
-        while (!enemyCollision && !playerCollision) {
+        while (!enemyDead && !playerDead) {
+
+
+
             if (enemy.getHealth() > 0) {
                 enemy.start();
             } else if (enemy2.getHealth() > 0) {
@@ -44,9 +53,23 @@ public class Game implements KeyboardHandler {
             } else if (enemy4.getHealth() > 0) {
                 enemy4.start();
             }
+
+            if(enemyHit){
+                enemy.setHealth(enemy.getHealth() - 1);
+                enemyHit = false;
+            }
+
+            if(playerHit){
+                player.setHealth(player.getHealth()-1);
+                playerHit = false;
+            }
+            if(player.getHealth() < 0){
+                playerDead = true;
+            }
+
             //enemy4.start();
             player.shot();
-            collisionDetector4(player, enemy);
+
             //System.out.println(enemy.getHealth());
             //System.out.println(player.getHealth());
         }
@@ -73,96 +96,9 @@ public class Game implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
     }
 
-    public void collisionDetector4(Player player, Enemy enemy) {
-
-        if (player.getBullets(player.getBulletCounter()) == null) {
-            return;
-        }
-        System.out.println("passed");
-
-        for (int i = player.getBullets(player.getBulletCounter()).getX(); i <= player.getBullets(player.getBulletCounter()).getX() + 100; i++) {
-            for (int j = enemy.getX(); j <= enemy.getX() + 100; j++) {
-                if (player.getBullets(player.getBulletCounter()).getY() <= 300 &&
-                        player.getBullets(player.getBulletCounter()).getX() >= enemy.getX() &&
-                        player.getBullets(player.getBulletCounter()).getX() <= enemy.getX() + 100) {
-                    System.out.println("Enemy down");
-                    this.enemyCollision = true;
-                }
-            }
-        }
-    }
-
-    public void collisionDetector3(Player player, Enemy enemy) {
-        if (player.getBullets(player.getBulletCounter()) == null) {
-            return;
-        }
-        for (int i = player.getBullets(player.getBulletCounter()).getX(); i <= player.getBullets(player.getBulletCounter()).getX() + 100; i++) {
-            for (int j = player.getBullets(player.getBulletCounter()).getY(); i <= player.getBullets(player.getBulletCounter()).getY() + 300; j++) {
-                if (j >= enemy.getX() && j <= enemy.getEnemy().getWidth() &&
-                        i <= 700 && i >= 500) {
-                    System.out.println("Enemy down");
-                    this.enemyCollision = true;
-                }
-            }
-        }
-    }
-
-    public void collisionDetector2(Player player, Enemy enemy) {
-
-        if (player.getBullets(player.getBulletCounter()) == null) {
-            return;
-        }
-
-        for (int i = player.getBullets(player.getBulletCounter()).getX(); i <= player.getBullets(player.getBulletCounter()).getX() + player.getBullets(player.getBulletCounter()).getBullet().getWidth(); i++) {
-            for (int j = player.getBullets(player.getBulletCounter()).getY(); i <= player.getBullets(player.getBulletCounter()).getY() + player.getBullets(player.getBulletCounter()).getBullet().getHeight(); j++) {
-                if (i >= enemy.getX() && i <= enemy.getX() + enemy.getBullet(enemy.getBulletCounter()).getBullet().getWidth() &&
-                        j >= enemy.getY() && j <= enemy.getY() + enemy.getBullet(enemy.getBulletCounter()).getBullet().getHeight()) {
-                    System.out.println("Enemy down");
-                    this.enemyCollision = true;
-                }
-            }
-        }
-        System.out.println("Passed");
-    }
 
 
-    public void collisionDetector(Enemy enemy, Player player) {
-        //System.out.println("START");
-        if (player.getBullets(player.getBulletCounter()) == null) {
-            return;
-        }
 
-        for (int i = player.getBullets(player.getBulletCounter()).getBullet().getX(); i <= player.getBullets(player.getBulletCounter()).getBullet().getX()
-                + player.getBullets(player.getBulletCounter()).getBullet().getWidth(); i++) {
-            for (int j = player.getBullets(player.getBulletCounter()).getBullet().getY(); j <= player.getBullets(player.getBulletCounter()).getBullet().getY() +
-                    player.getBullets(player.getBulletCounter()).getBullet().getHeight(); j++) {
-                if (j >= enemy.getEnemy().getX() && j <= enemy.getEnemy().getX() + enemy.getEnemy().getWidth() &&
-                        j >= enemy.getEnemy().getY() && j <= enemy.getEnemy().getY() + enemy.getEnemy().getHeight()) {
-                    this.playerCollision = true;
-                    System.out.println("Player down");
-                }
-            }
-        }
-
-        if (enemy.getBullet(enemy.getBulletCounter()) == null) {
-            return;
-        }
-
-        for (int i = enemy.getBullet(enemy.getBulletCounter()).getBullet().getX(); i <= enemy.getBullet(enemy.getBulletCounter()).getBullet().getX() +
-                enemy.getBullet(enemy.getBulletCounter()).getBullet().getWidth(); i++) {
-            for (int j = enemy.getBullet(enemy.getBulletCounter()).getBullet().getY(); j <= enemy.getBullet(enemy.getBulletCounter()).getBullet().getY() +
-                    enemy.getBullet(enemy.getBulletCounter()).getBullet().getHeight(); j++) {
-                if (j >= player.getPlayer().getX() && j <= player.getPlayer().getX() + player.getPlayer().getWidth() &&
-                        j >= player.getPlayer().getY() && j >= player.getPlayer().getY() + player.getPlayer().getHeight()) {
-                    enemy.setEnemy(newPic);
-                    enemy.getEnemy().draw();
-                    this.enemyCollision = true;
-                    System.out.println("Enemy down");
-                }
-            }
-        }
-        System.out.println("FINISH");
-    }
 
 
 
@@ -272,7 +208,7 @@ public class Game implements KeyboardHandler {
             return this.bullet;
         }
 
-        public void collisionDetector4(Player player, Enemy enemy) {
+        public void collisionDetector4(Player player, Jojo enemy) {
 
             if (player.getBullets(player.getBulletCounter()) == null) {
                 return;
@@ -284,7 +220,7 @@ public class Game implements KeyboardHandler {
                     if (player.getBullets(player.getBulletCounter()).getY() <= 300 &&
                             player.getBullets(player.getBulletCounter()).getX() >= enemy.getX() &&
                             player.getBullets(player.getBulletCounter()).getX() <= enemy.getX() + 100) {
-                        System.out.println("Enemy down");
+                        System.out.println("Jojo down");
                         this.enemyCollision = true;
                     }
                 }

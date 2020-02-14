@@ -1,5 +1,10 @@
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies;
+
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Bullet;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Directions;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-public class Enemy4{
+public class Rita extends Boss{
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -11,8 +16,7 @@ public class Enemy4{
     private int width;
     private int height;
     private boolean movement;
-
-    public Enemy4(int health, Field field, int x, int y) {
+    public Rita(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
         this.dead = false;
@@ -23,13 +27,13 @@ public class Enemy4{
         this.width = 50;
         this.height = 25;
         this.movement = true;
-        this.enemy = new Picture(this.x, this.y, "resources/SoraiaNormal.png");
+        this.enemy = new Picture(this.x, this.y, "resources/ritaNormal.png");
     }
     public void start() {
         this.enemy.draw();
         move();
         int random = (int) (Math.ceil(Math.random() * 10));
-        if (random > 7) {
+        if (random > 6) {
             shootBack();
         }
     }
@@ -43,27 +47,26 @@ public class Enemy4{
     }
     public void move() {
         enemy.delete();
-        int random = (int)(Math.ceil(Math.random()*500));
         if (movement) { // RIGHT
-            if (enemy.getX() > field.getWidth() - random - enemy.getWidth()) {
+            if (enemy.getX() > field.getWidth() - enemy.getWidth()) {
                 enemy.draw();
                 movement = false;
                 return;
             } else {
-                enemy.translate(random, 0);
-                x += random;
+                enemy.translate(100, 0);
+                x += 100;
                 enemy.draw();
             }
             return;
         }
         if (!movement) { //LEFT
-            if (enemy.getX() <= field.getx() + random + 15) {
+            if (enemy.getX() <= field.getx() + 15) {
                 enemy.draw();
                 movement = true;
                 return;
             } else {
-                enemy.translate(-random, 0);
-                x -= random;
+                enemy.translate(-100, 0);
+                x -= 100;
                 enemy.draw();
             }
             return;

@@ -1,4 +1,5 @@
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -20,7 +21,7 @@ public class Player implements KeyboardHandler {
 
 
     public Player(Field field) {
-        this.health = 3;
+        this.health = 5;
         this.field = field;
         this.keyboard = new Keyboard(this);
         this.x = 644;
