@@ -46,6 +46,9 @@ public class Rita extends Boss{
 
     public void start() {
         this.enemy.draw();
+        if(this.health <= 0){
+            this.enemy.delete();
+        }
         int random = (int) (Math.ceil(Math.random()*20));
         //System.out.println(random);
         if(random >7) {

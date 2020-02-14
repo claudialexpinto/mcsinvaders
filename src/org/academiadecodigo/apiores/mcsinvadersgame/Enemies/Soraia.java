@@ -51,10 +51,7 @@ public class Soraia extends Boss{
             move();
             if(random >8) {
                 shootBack();
-
             }
-
-
         }
 
         public void shootBack() {
@@ -88,7 +85,7 @@ public class Soraia extends Boss{
 
             if(!movement){ //LEFT
                 enemy.delete();
-                if(enemy.getX() <= this.field.getX() + (random -100)){
+                if(enemy.getX() <= this.field.getX() + random){
                     movement = true;
                     return;
                 } else {
