@@ -20,7 +20,6 @@ public class Game implements KeyboardHandler {
     private boolean playerDead;
     public static boolean playerHit;
     public static boolean enemyHit;
-    public static int boss;
     public static Boss enemy;
     public Picture startKey;
     public Picture reStartKey;
@@ -41,13 +40,14 @@ public class Game implements KeyboardHandler {
         this.gameRestart=false;
         this.startKey = new Picture(field.getX(),field.getY(), "resources/GameImages/MAIN MENU.png");
         this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/GameOver.png");
+        this.gameRestart = false;
 
     }
 
     public void init() {
-        this.gameStart=false;
+        this.gameStart = false;
         gameControls();
-        while(!gameStart){
+        while (!gameStart) {
             this.startKey.draw();
         }
         this.startKey.delete();
@@ -57,9 +57,9 @@ public class Game implements KeyboardHandler {
     }
 
     public void reStart() {
-        this.gameRestart=false;
+        this.gameRestart = false;
         gameControls();
-        while(!gameRestart) {
+        while (!gameRestart) {
             this.reStartKey.draw();
         }
         this.reStartKey.delete();
@@ -76,21 +76,24 @@ public class Game implements KeyboardHandler {
                 enemy = enemy1;
                 enemy.start();
             } else if (enemy2.getHealth() > 0) {
+                this.enemy.getEnemy().delete();
                 enemy = enemy2;
                 enemy.start();
             } else if (enemy3.getHealth() > 0) {
+                this.enemy.getEnemy().delete();
                 enemy = enemy3;
                 enemy.start();
             } else if (enemy4.getHealth() > 0) {
+                this.enemy.getEnemy().delete();
                 enemy = enemy4;
                 enemy.start();
-            } else if (enemy4.getHealth() <= 0){
+            } else if (enemy.getHealth() <= 0) {
+                this.enemy.getEnemy().delete();
                 reStart();
             }
 
             if (enemyHit) {
                 enemy.setHealth(enemy.getHealth() - 1);
-                System.out.println("Enemy health: " + enemy.getHealth());
                 enemyHit = false;
             }
 
@@ -104,11 +107,8 @@ public class Game implements KeyboardHandler {
                 reStart();
             }
 
-            //enemy4.start();
             player.shot();
 
-            //System.out.println(enemy1.getHealth());
-            //System.out.println(player.getHealth());
         }
     }
 
@@ -129,13 +129,13 @@ public class Game implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_R:
-                if(!gameRestart) {
+                if (!gameRestart) {
                     this.player.setHealth(3);
                     this.gameRestart = true;
                 }
                 break;
             case KeyboardEvent.KEY_S:
-                if(!gameStart) {
+                if (!gameStart) {
                     this.gameStart = true;
                 }
                 break;
