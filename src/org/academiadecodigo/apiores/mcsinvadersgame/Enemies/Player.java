@@ -21,7 +21,7 @@ public class Player implements KeyboardHandler {
 
 
     public Player(Field field) {
-        this.health = 5;
+        this.health = 100;
         this.field = field;
         this.keyboard = new Keyboard(this);
         this.x = 644;

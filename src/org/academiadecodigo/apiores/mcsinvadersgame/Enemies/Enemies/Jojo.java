@@ -31,7 +31,7 @@ public class Jojo extends Boss{
         this.movement = true;
         this.enemy = new Picture(this.x, this.y, "resources/jojoNormal.png");
         //for(int i = 0; i < bulletCounter; i++){
-          //  bullets[i] = new Bullet(enemy.getX() + (enemy.getWidth()/2) , enemy.getY() + enemy.getHeight(), this.field);
+          //  bullets[i] = new Bullet(enemy1.getX() + (enemy1.getWidth()/2) , enemy1.getY() + enemy1.getHeight(), this.field);
         //}
     }
 
@@ -65,7 +65,6 @@ public class Jojo extends Boss{
     }
 
     public void move(){
-        System.out.println("Jojo: " + x);
         if(movement){ // RIGHT
             if(enemy.getX() > this.field.getWidth() - enemy.getWidth()){
                 enemy.draw();
@@ -102,12 +101,7 @@ public class Jojo extends Boss{
         }
     }
 
-    public void getHit(int damage) {
-        health--;
-        if (health == 0) {
-            dead = true;
-        }
-    }
+
 
     public Bullet getBullet(int i) {
         return bullets[i];

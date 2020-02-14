@@ -16,6 +16,8 @@ public class Ricardo extends Boss{
     private int width;
     private int height;
     private boolean movement;
+
+
     public Ricardo(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
@@ -78,12 +80,7 @@ public class Ricardo extends Boss{
             return;
         }
     }
-    public void GetHit(int damage) {
-        health = damage - health;
-        if (health == 0) {
-            dead = true;
-        }
-    }
+
     public Bullet getBullet(int i) {
         return bullets[i];
     }

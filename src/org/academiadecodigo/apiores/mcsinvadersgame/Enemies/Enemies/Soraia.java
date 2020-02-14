@@ -74,12 +74,7 @@ public class Soraia extends Boss{
             return;
         }
     }
-    public void GetHit(int damage) {
-        health = damage - health;
-        if (health == 0) {
-            dead = true;
-        }
-    }
+
     public Bullet getBullet(int i) {
         return bullets[i];
     }

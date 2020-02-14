@@ -57,8 +57,8 @@ public class Bullet {
                 }
             }
         }
-        collisionDetectorE(Game.player, Game.enemy);
-        collisionDetectorP(Game.player, Game.enemy);
+        collisionDetectorE(Game.player, Game.enemy1);
+        collisionDetectorP(Game.player, Game.enemy1);
         bullet.delete();
         bullet2.delete();
     }
@@ -79,10 +79,9 @@ public class Bullet {
                 if (player.getBullets(player.getBulletCounter()).getY() <= 300 &&
                         player.getBullets(player.getBulletCounter()).getX() >= enemy.getX() &&
                         player.getBullets(player.getBulletCounter()).getX() <= enemy.getX() + 100) {
-                    //System.out.println("Jojo down");
+                    System.out.println("MC down");
                     Game.enemyHit = true;
                     if (enemy.getHealth() <= 0) {
-                        enemy.setHealth(0);
                         enemy.getEnemy().delete();
                     }
                 }

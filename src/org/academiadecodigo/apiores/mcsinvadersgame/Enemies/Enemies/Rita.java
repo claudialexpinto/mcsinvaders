@@ -16,6 +16,7 @@ public class Rita extends Boss{
     private int width;
     private int height;
     private boolean movement;
+
     public Rita(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
