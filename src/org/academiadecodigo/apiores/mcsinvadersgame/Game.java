@@ -1,6 +1,7 @@
 package org.academiadecodigo.apiores.mcsinvadersgame;
 
 import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.*;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.*;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -37,10 +38,9 @@ public class Game implements KeyboardHandler {
         this.enemyDead = false;
         this.playerDead = false;
         this.gameStart = false;
-        this.gameRestart=false;
-        this.startKey = new Picture(field.getX(),field.getY(), "resources/GameImages/MAIN MENU.png");
-        this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/GameOver.png");
         this.gameRestart = false;
+        this.startKey = new Picture(field.getX(), field.getY(), "resources/GameImages/MAIN MENU.png");
+        this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/GameOver.png");
 
     }
 
@@ -63,7 +63,7 @@ public class Game implements KeyboardHandler {
             this.reStartKey.draw();
         }
         this.reStartKey.delete();
-        init();
+        start();
     }
 
     public void start() {
