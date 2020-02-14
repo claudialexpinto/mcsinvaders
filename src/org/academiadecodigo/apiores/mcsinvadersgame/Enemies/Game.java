@@ -35,11 +35,16 @@ public class Game implements KeyboardHandler {
         this.playerDead = false;
     }
 
+
+
     public void start() {
+        //restart();
         field.init();
         //  while(true) {
+        //restart();
         player.start();
         while (!enemyDead && !playerDead) {
+
 
             if (enemy1.getHealth() > 0) {
                 enemy = enemy1;
@@ -96,7 +101,11 @@ public class Game implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_R) {
             this.player.setHealth(3);
-            this.enemy1.setHealth(0);
+            this.enemy1.setHealth(5);
+            this.enemy2.setHealth(5);
+            this.enemy3.setHealth(5);
+            this.enemy4.setHealth(5);
+            this.enemy4.setHealth(5);
             start();
         }
     }
