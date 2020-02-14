@@ -6,7 +6,7 @@ public class Main {
         Game g = new Game(1489,838);
 
         g.start();
-        g.restart();
+        //g.restart();
 
 
     }

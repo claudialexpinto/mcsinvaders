@@ -22,6 +22,8 @@ public class Game implements KeyboardHandler {
     public static boolean enemyHit;
     public static int boss;
     public static Boss enemy;
+    public Picture startKey;
+    public Picture reStartKey;
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
@@ -80,25 +82,49 @@ public class Game implements KeyboardHandler {
         }
     }
 
-    public void restart() {
-        KeyboardEvent start = new KeyboardEvent();
-        start.setKey(KeyboardEvent.KEY_R);
-        start.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboard.addEventListener(start);
-    }
-
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_R) {
-            this.player.setHealth(3);
-            this.enemy1.setHealth(0);
-            start();
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_R:
+                reStart();
+                reStartKey.delete();
+                this.player.setHealth(3);
+                start();
+                break;
+            case KeyboardEvent.KEY_S:
+                start();
+                startKey.delete();
+                break;
         }
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+    }
+
+    public void init() {
+        this.startKey = new Picture(field.getx(), field.getY(), "");
+        this.startKey.draw();
+        gameControls();
+    }
+
+    public void reStart() {
+        this.reStartKey = new Picture(field.getx(), field.getY(), "");
+        this.reStartKey.draw();
+        gameControls();
+    }
+
+    public void gameControls() {
+        KeyboardEvent start = new KeyboardEvent();
+        start.setKey(KeyboardEvent.KEY_S);
+        start.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(start);
+
+        KeyboardEvent reStart = new KeyboardEvent();
+        reStart.setKey(KeyboardEvent.KEY_R);
+        reStart.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(reStart);
     }
 
 

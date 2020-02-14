@@ -43,8 +43,6 @@ public class Jojo extends Boss{
         this.health = health;
     }
 
-
-
     public void start() {
         this.enemy.draw();
             int random = (int) (Math.ceil(Math.random()*20));
