@@ -20,12 +20,12 @@ public class Game implements KeyboardHandler {
     private boolean playerDead;
     public static boolean playerHit;
     public static boolean enemyHit;
-    public static int boss;
     public static Boss enemy;
-    public Picture startKey;
-    public Picture reStartKey;
+    private Picture startKey;
+    private Picture reStartKey;
     private boolean gameStart;
     private boolean gameRestart;
+    //private Picture lvl1;
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
@@ -41,7 +41,7 @@ public class Game implements KeyboardHandler {
         this.gameRestart=false;
         this.startKey = new Picture(field.getX(),field.getY(), "resources/GameImages/MAIN MENU.png");
         this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/GameOver.png");
-
+        //this.lvl1 = new Picture(field.getX(),field.getY(),"resources/lvl/lvl1 text.png");
     }
 
     public void init() {
@@ -51,9 +51,7 @@ public class Game implements KeyboardHandler {
             this.startKey.draw();
         }
         this.startKey.delete();
-
         start();
-
     }
 
     public void reStart() {
@@ -68,7 +66,6 @@ public class Game implements KeyboardHandler {
 
     public void start() {
         field.init();
-        //  while(true) {
         player.start();
         while (!enemyDead && !playerDead) {
 
@@ -101,11 +98,7 @@ public class Game implements KeyboardHandler {
                 reStart();
             }
 
-            //enemy4.start();
             player.shot();
-
-            //System.out.println(enemy1.getHealth());
-            //System.out.println(player.getHealth());
         }
     }
 
@@ -142,7 +135,6 @@ public class Game implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
     }
-
 
 }
 

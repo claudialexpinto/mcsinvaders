@@ -13,8 +13,6 @@ public class Rita extends Boss{
     private int bulletCounter;
     private int x;
     private int y;
-    private int width;
-    private int height;
     private boolean movement;
 
     public Rita(int health, Field field, int x, int y) {
@@ -25,13 +23,8 @@ public class Rita extends Boss{
         this.bulletCounter = 0;
         this.x = x;
         this.y = y;
-        //this.width = 50;
-        //this.height = 25;
         this.movement = true;
         this.enemy = new Picture(this.x, this.y, "resources/Enemies/Rita/ritaNormal.png");
-        //for(int i = 0; i < bulletCounter; i++){
-        //  bullets[i] = new Bullet(enemy1.getX() + (enemy1.getWidth()/2) , enemy1.getY() + enemy1.getHeight(), this.field);
-        //}
     }
 
     public int getHealth() {
@@ -47,7 +40,6 @@ public class Rita extends Boss{
     public void start() {
         this.enemy.draw();
         int random = (int) (Math.ceil(Math.random()*20));
-        //System.out.println(random);
         if(random >7) {
             shootBack();
             move();
