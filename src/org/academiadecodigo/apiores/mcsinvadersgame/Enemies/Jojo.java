@@ -3,6 +3,7 @@ package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
 import org.academiadecodigo.apiores.mcsinvadersgame.Bullet;
 import org.academiadecodigo.apiores.mcsinvadersgame.Directions;
 import org.academiadecodigo.apiores.mcsinvadersgame.Field;
+import org.academiadecodigo.apiores.mcsinvadersgame.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Jojo extends Boss{
@@ -56,6 +57,8 @@ public class Jojo extends Boss{
     }
 
     public void shootBack() {
+        Sound laser = new Sound(" resources/Music/Laser Gun Sound Effect (1).wav");
+        laser.play(true);
         if (bulletCounter == 9) {
             bulletCounter = 0;
         }
