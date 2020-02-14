@@ -33,7 +33,11 @@ public class Boss {
         return x;
     }
 
-    public void start(){}
+    public void start(){
+        if(health == 0){
+            this.enemy.delete();
+        }
+    }
 
     public int getHealth() {
         return health;

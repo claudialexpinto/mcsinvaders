@@ -47,7 +47,7 @@ public class Bullet {
             }
         } else if (direction == Directions.DOWN) {
             bullet.draw();
-            while (bullet.getY() < field.getHeight() - 22) {
+            while (bullet.getY() < field.getHeight() - 30) {
                 try {
                     Thread.sleep(10);
                     this.bullet.translate(0, 20);
@@ -57,8 +57,8 @@ public class Bullet {
                 }
             }
         }
-        collisionDetectorE(Game.player, Game.enemy1);
-        collisionDetectorP(Game.player, Game.enemy1);
+        collisionDetectorE(Game.player, Game.enemy);
+        collisionDetectorP(Game.player, Game.enemy);
         bullet.delete();
         bullet2.delete();
     }
@@ -76,11 +76,12 @@ public class Bullet {
 
         for (int i = player.getBullets(player.getBulletCounter()).getX(); i <= player.getBullets(player.getBulletCounter()).getX() + 100; i++) {
             for (int j = enemy.getX(); j <= enemy.getX() + 100; j++) {
-                if (player.getBullets(player.getBulletCounter()).getY() <= 300 &&
+                if (player.getBullets(player.getBulletCounter()).getY() <= 400 &&
                         player.getBullets(player.getBulletCounter()).getX() >= enemy.getX() &&
                         player.getBullets(player.getBulletCounter()).getX() <= enemy.getX() + 100) {
-                    System.out.println("MC down");
+                    //System.out.println("MC down");
                     Game.enemyHit = true;
+                    bullet.delete();
                     if (enemy.getHealth() <= 0) {
                         //enemy.getEnemy().load("");
                         enemy.getEnemy().draw();
@@ -104,9 +105,9 @@ public class Bullet {
                 if (enemy.getBullet(enemy.getBulletCounter()).getY() >= 700 &&
                         enemy.getBullet(enemy.getBulletCounter()).getX() >= player.getX() &&
                         enemy.getBullet(enemy.getBulletCounter()).getX() <= player.getX() + 100) {
-                    System.out.println("Player down");
                     Game.playerHit = true;
-                    System.out.println(player.getHealth());
+                    bullet.delete();
+                   // System.out.println(player.getHealth());
                     if (player.getHealth() < 0) {
                         player.setHealth(0);
                         player.getPlayer().delete();

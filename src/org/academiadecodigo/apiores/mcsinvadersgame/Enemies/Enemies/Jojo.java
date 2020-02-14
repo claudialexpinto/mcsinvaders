@@ -1,6 +1,6 @@
 package org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Bullet;
+import org.academiadecodigo.apiores.mcsinvadersgame.Bullet;
 import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Directions;
 import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -43,6 +43,8 @@ public class Jojo extends Boss{
         this.health = health;
     }
 
+
+
     public void start() {
         this.enemy.draw();
             int random = (int) (Math.ceil(Math.random()*20));
@@ -82,6 +84,7 @@ public class Jojo extends Boss{
         }
 
         if(!movement){ //LEFT
+            enemy.delete();
             if(enemy.getX() <= this.field.getX() + 100){
                 movement = true;
                 return;

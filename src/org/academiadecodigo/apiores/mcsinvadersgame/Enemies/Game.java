@@ -12,9 +12,9 @@ public class Game implements KeyboardHandler {
     public static Player player;
     private Field field;
     public static Boss enemy1;
-    private static Boss enemy2;
-    private Boss enemy3;
-    private Boss enemy4;
+    public static Boss enemy2;
+    public static Boss enemy3;
+    public static Boss enemy4;
     private Keyboard keyboard;
     private boolean enemyDead;
     private boolean playerDead;
@@ -28,11 +28,11 @@ public class Game implements KeyboardHandler {
     private boolean gameRestart;
 
     public Game(double width, double height) {
-        this.field = new Field(width,height);
-        this.enemy1 = new Jojo(10, this.field, 700, 50);
+        this.field = new Field(width, height);
+        this.enemy1 = new Jojo(3, this.field, 700, 50);
         this.enemy2 = new Rita(3, this.field, 700, 50);
-        this.enemy3 = new Ricardo(10, this.field, 700, 50);
-        this.enemy4 = new Soraia(15, this.field, 700, 50);
+        this.enemy3 = new Ricardo(3, this.field, 700, 50);
+        this.enemy4 = new Soraia(3, this.field, 700, 50);
         this.player = new Player(this.field);
         this.keyboard = new Keyboard(this);
         this.enemyDead = false;
@@ -146,6 +146,7 @@ public class Game implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
     }
+
 
 }
 
