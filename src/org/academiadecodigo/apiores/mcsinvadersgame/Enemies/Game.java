@@ -37,8 +37,6 @@ public class Game implements KeyboardHandler {
         this.keyboard = new Keyboard(this);
         this.enemyDead = false;
         this.playerDead = false;
-        this.boss = 1;
-        this.enemy = enemy1;
         this.gameStart = false;
         this.gameRestart=false;
         this.startKey = new Picture(field.getX(),field.getY(), "resources/GameImages/press enter to start.png");
