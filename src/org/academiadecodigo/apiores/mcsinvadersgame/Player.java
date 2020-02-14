@@ -10,8 +10,6 @@ public class Player implements KeyboardHandler {
     private Picture player;
     private int x;
     private int y;
-    //private int width;
-    //private int height;
     private Field field;
     private Keyboard keyboard;
     private Bullet[] bullets;
@@ -26,14 +24,9 @@ public class Player implements KeyboardHandler {
         this.keyboard = new Keyboard(this);
         this.x = 644;
         this.y = 749;
-        //this.width = 100;
-        //this.height = 50;
         this.bullets = new Bullet[10];
         this.bulletCounter = 0;
         this.player = new Picture(this.x, this.y,"resources/Players/player.png");
-        /*for(int i = 0; i < bulletCounter; i++){
-            bullets[i] = new Bullet(player.getX() + (player.getWidth()/2) , player.getY() + player.getHeight(), this.field);
-        }*/
     }
 
     public int getHealth() {

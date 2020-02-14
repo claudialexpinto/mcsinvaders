@@ -11,7 +11,11 @@ public class Boss {
     private Picture enemy;
     private int bulletCounter;
     private Bullet[] bullet;
+    private Picture enemyDead;
 
+    public Picture getEnemyDead() {
+        return enemyDead;
+    }
 
     public int getBulletCounter() {
         return bulletCounter;
@@ -33,8 +37,8 @@ public class Boss {
         return x;
     }
 
-    public void start(){
-        if(health == 0){
+    public void start() {
+        if (health == 0) {
             this.enemy.delete();
         }
     }

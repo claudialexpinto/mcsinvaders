@@ -17,7 +17,6 @@ public class Bullet {
         this.field = field;
         this.bullet = new Picture(x, y, "resources/Enemies/laserRed.png");
         this.bullet2 = new Picture(x, y, "resources/Players/laserGreen.png");
-
         this.x = x;
         this.y = y;
     }
@@ -33,7 +32,7 @@ public class Bullet {
     public void bulletMove(Directions direction) {
         if (direction == Directions.UP) {
             bullet2.draw();
-            while (bullet2.getY() > 22) {
+            while (bullet2.getY() > 20) {
                 bullet2.draw();
                 try {
                     Thread.sleep(10);
@@ -45,7 +44,7 @@ public class Bullet {
             }
         } else if (direction == Directions.DOWN) {
             bullet.draw();
-            while (bullet.getY() < field.getHeight() - 30) {
+            while (bullet.getY() < field.getHeight() - bullet.getHeight() - 10) {
                 try {
                     Thread.sleep(10);
                     this.bullet.translate(0, 20);
@@ -77,7 +76,6 @@ public class Bullet {
                         player.getBullets(player.getBulletCounter()).getX() >= enemy.getX() &&
                         player.getBullets(player.getBulletCounter()).getX() <= enemy.getX() + 100) {
                     Game.enemyHit = true;
-                    bullet.delete();
                     if (enemy.getHealth() <= 0) {
                         enemy.getEnemy().draw();
                         enemy.getEnemy().delete();
@@ -100,8 +98,8 @@ public class Bullet {
                         enemy.getBullet(enemy.getBulletCounter()).getX() >= player.getX() &&
                         enemy.getBullet(enemy.getBulletCounter()).getX() <= player.getX() + 100) {
                     Game.playerHit = true;
-                    bullet.delete();
-                   if (player.getHealth() < 0) {
+
+                    if (player.getHealth() < 0) {
                         player.setHealth(0);
                         player.getPlayer().delete();
                     }

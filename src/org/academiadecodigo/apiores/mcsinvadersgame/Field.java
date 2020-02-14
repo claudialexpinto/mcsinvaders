@@ -14,13 +14,13 @@ public class Field {
 
     private Picture field;
 
-    public Field(double width, double height){
+    public Field(double width, double height) {
         this.width = width;
         this.height = height;
-        field = new Picture(PADDING,PADDING,"resources/GameImages/background.png");
+        field = new Picture(PADDING, PADDING, "resources/GameImages/background.png");
     }
 
-    public void init(){
+    public void init() {
         field.draw();
     }
 
@@ -32,11 +32,11 @@ public class Field {
         return field.getWidth();
     }
 
-    public double getX(){
+    public double getX() {
         return field.getX();
     }
 
-    public double getY(){
+    public double getY() {
         return field.getY();
     }
 

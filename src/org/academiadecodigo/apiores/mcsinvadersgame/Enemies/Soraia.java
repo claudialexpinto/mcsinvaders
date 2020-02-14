@@ -4,8 +4,10 @@ import org.academiadecodigo.apiores.mcsinvadersgame.Bullet;
 import org.academiadecodigo.apiores.mcsinvadersgame.Directions;
 import org.academiadecodigo.apiores.mcsinvadersgame.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-public class Soraia extends Boss{
+
+public class Soraia extends Boss {
     private Picture enemy;
+    private Picture enemyDead;
     private int health;
     private boolean dead;
     private Field field;
@@ -15,115 +17,118 @@ public class Soraia extends Boss{
     private int y;
     private boolean movement;
 
-        public Soraia(int health, Field field, int x, int y) {
-            this.health = health;
-            this.field = field;
-            this.dead = false;
-            this.bullets = new Bullet[10];
-            this.bulletCounter = 0;
-            this.x = x;
-            this.y = y;
-            this.movement = true;
-            this.enemy = new Picture(this.x, this.y, "resources/Enemies/Soraia/SoraiaNormal.png");
+    public Soraia(int health, Field field, int x, int y) {
+        this.health = health;
+        this.field = field;
+        this.dead = false;
+        this.bullets = new Bullet[10];
+        this.bulletCounter = 0;
+        this.x = x;
+        this.y = y;
+        this.movement = true;
+        this.enemy = new Picture(this.x, this.y, "resources/Enemies/Soraia/SoraiaNormal.png");
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    @Override
+    public Picture getEnemyDead() {
+        return enemyDead;
+    }
+
+    public void start() {
+        this.enemy.draw();
+        int random = (int) (Math.ceil(Math.random() * 20));
+        if (this.health <= 6) {
+            enemy.load("resources/Enemies/Soraia/SoraiaHit.png");
         }
-
-        public int getHealth() {
-            return health;
-        }
-
-        public void setHealth(int health) {
-            this.health = health;
-        }
-
-
-
-        public void start() {
-            this.enemy.draw();
-            int random = (int) (Math.ceil(Math.random()*20));
-            move();
-            if(random >8) {
-                shootBack();
-
-            }
-
+        move();
+        if (random > 8) {
+            shootBack();
 
         }
+    }
 
-        public void shootBack() {
-            if (bulletCounter == 9) {
-                bulletCounter = 0;
-            }
-            bullets[bulletCounter] = new Bullet(enemy.getX() + (enemy.getWidth()/2) , enemy.getY() + enemy.getHeight(), this.field);
-            bullets[bulletCounter].bulletMove(Directions.DOWN);
-            bulletCounter++;
+    public void shootBack() {
+        if (bulletCounter == 9) {
+            bulletCounter = 0;
         }
+        bullets[bulletCounter] = new Bullet(enemy.getX() + (enemy.getWidth() / 2), enemy.getY() + enemy.getHeight(), this.field);
+        bullets[bulletCounter].bulletMove(Directions.DOWN);
+        bulletCounter++;
+    }
 
-        public void move(){
-            int random = (int)(Math.ceil(Math.random()*300));
-            if(movement){ // RIGHT
-                if(enemy.getX() > this.field.getWidth() - (random +100)){
+    public void move() {
+        int random = (int) (Math.ceil(Math.random() * 300));
+        if (movement) { // RIGHT
+            if (enemy.getX() > this.field.getWidth() - (random + 100)) {
+                enemy.draw();
+                movement = false;
+                return;
+            } else {
+                try {
+                    Thread.sleep(10);
+                    enemy.translate(random, 0);
+                    x += random;
                     enemy.draw();
-                    movement = false;
-                    return;
-                } else {
-                    try{
-                        Thread.sleep(10);
-                        enemy.translate(random, 0);
-                        x += random;
-                        enemy.draw();
-                    }catch (InterruptedException ex){
-                        System.out.println(ex.getMessage());
-                    }
+                } catch (InterruptedException ex) {
+                    System.out.println(ex.getMessage());
                 }
-                return;
             }
+            return;
+        }
 
-            if(!movement){ //LEFT
-                enemy.delete();
-                if(enemy.getX() <= this.field.getX() + (random -100)){
-                    movement = true;
-                    return;
-                } else {
-                    try{
-                        Thread.sleep(10);
-                        enemy.translate(-random, 0);
-                        x -= random;
-                        enemy.draw();
-                    }catch (InterruptedException ex){
-                        System.out.println(ex.getMessage());
-                    }
+        if (!movement) { //LEFT
+            enemy.delete();
+            if (enemy.getX() <= this.field.getX() + (random - 100)) {
+                movement = true;
+                return;
+            } else {
+                try {
+                    Thread.sleep(10);
+                    enemy.translate(-random, 0);
+                    x -= random;
+                    enemy.draw();
+                } catch (InterruptedException ex) {
+                    System.out.println(ex.getMessage());
                 }
-                return;
             }
+            return;
         }
+    }
 
 
+    public Bullet getBullet(int i) {
+        return bullets[i];
+    }
 
-        public Bullet getBullet(int i) {
-            return bullets[i];
-        }
+    public Picture getEnemy() {
+        return enemy;
+    }
 
-        public Picture getEnemy() {
-            return enemy;
-        }
+    public int getX() {
+        return x;
+    }
 
-        public int getX() {
-            return x;
-        }
+    public int getY() {
+        return y;
+    }
 
-        public int getY() {
-            return y;
-        }
+    public int getBulletCounter() {
+        return bulletCounter;
+    }
 
-        public int getBulletCounter() {
-            return bulletCounter;
-        }
+    public boolean isDead() {
+        return dead;
+    }
 
-        public boolean isDead() {
-            return dead;
-        }
-
-        public void setEnemy(Picture enemy) {
-            this.enemy = enemy;
-        }
+    public void setEnemy(Picture enemy) {
+        this.enemy = enemy;
+    }
 }

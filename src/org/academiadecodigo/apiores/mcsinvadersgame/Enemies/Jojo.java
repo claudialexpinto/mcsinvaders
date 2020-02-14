@@ -5,8 +5,9 @@ import org.academiadecodigo.apiores.mcsinvadersgame.Directions;
 import org.academiadecodigo.apiores.mcsinvadersgame.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Jojo extends Boss{
+public class Jojo extends Boss {
     private Picture enemy;
+    private Picture enemyDead;
     private int health;
     private boolean dead;
     private Field field;
@@ -28,6 +29,10 @@ public class Jojo extends Boss{
         this.enemy = new Picture(this.x, this.y, "resources/Enemies/Jojo/jojoNormal.png");
     }
 
+    public Picture getEnemyDead() {
+        return enemyDead;
+    }
+
     public int getHealth() {
         return health;
     }
@@ -37,11 +42,13 @@ public class Jojo extends Boss{
     }
 
 
-
     public void start() {
         this.enemy.draw();
-        int random = (int) (Math.ceil(Math.random()*20));
-        if(random >10) {
+        int random = (int) (Math.ceil(Math.random() * 20));
+        if (this.health <= 5) {
+            enemy.load("resources/Enemies/Jojo/jojoHit.png");
+        }
+        if (random > 10) {
             shootBack();
             move();
         }
@@ -51,49 +58,48 @@ public class Jojo extends Boss{
         if (bulletCounter == 9) {
             bulletCounter = 0;
         }
-        bullets[bulletCounter] = new Bullet(enemy.getX() + (enemy.getWidth()/2) , enemy.getY() + enemy.getHeight(), this.field);
+        bullets[bulletCounter] = new Bullet(enemy.getX() + (enemy.getWidth() / 2), enemy.getY() + enemy.getHeight(), this.field);
         bullets[bulletCounter].bulletMove(Directions.DOWN);
         bulletCounter++;
     }
 
-    public void move(){
-        if(movement){ // RIGHT
-            if(enemy.getX() > this.field.getWidth() - enemy.getWidth()){
+    public void move() {
+        if (movement) { // RIGHT
+            if (enemy.getX() > this.field.getWidth() - enemy.getWidth()) {
                 enemy.draw();
                 movement = false;
                 return;
             } else {
-                try{
+                try {
                     Thread.sleep(10);
                     enemy.translate(100, 0);
                     x += 100;
                     enemy.draw();
-                }catch (InterruptedException ex){
+                } catch (InterruptedException ex) {
                     System.out.println(ex.getMessage());
                 }
             }
             return;
         }
 
-        if(!movement){ //LEFT
+        if (!movement) { //LEFT
             enemy.delete();
-            if(enemy.getX() <= this.field.getX() + 100){
+            if (enemy.getX() <= this.field.getX() + 100) {
                 movement = true;
                 return;
             } else {
-                try{
+                try {
                     Thread.sleep(10);
                     enemy.translate(-100, 0);
                     x -= 100;
                     enemy.draw();
-                }catch (InterruptedException ex){
+                } catch (InterruptedException ex) {
                     System.out.println(ex.getMessage());
                 }
             }
             return;
         }
     }
-
 
 
     public Bullet getBullet(int i) {
