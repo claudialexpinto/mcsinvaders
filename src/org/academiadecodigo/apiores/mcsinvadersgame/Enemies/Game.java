@@ -24,9 +24,11 @@ public class Game implements KeyboardHandler {
     public static Boss enemy;
     public Picture startKey;
     public Picture reStartKey;
+    private boolean gameStart;
+    private boolean gameRestart;
 
     public Game(double width, double height) {
-        this.field = new Field(width, height);
+        this.field = new Field(width,height);
         this.enemy1 = new Jojo(10, this.field, 700, 50);
         this.enemy2 = new Rita(3, this.field, 700, 50);
         this.enemy3 = new Ricardo(10, this.field, 700, 50);
@@ -37,6 +39,34 @@ public class Game implements KeyboardHandler {
         this.playerDead = false;
         this.boss = 1;
         this.enemy = enemy1;
+        this.gameStart = false;
+        this.gameRestart=false;
+        this.startKey = new Picture(field.getX(),field.getY(), "resources/GameImages/press enter to start.png");
+        this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/press r to restart.png");
+
+    }
+
+    public void init() {
+        this.gameStart=false;
+        gameControls();
+        while(!gameStart){
+            this.startKey.draw();
+        }
+        this.startKey.delete();
+
+        start();
+
+    }
+
+    public void reStart() {
+        this.gameRestart=false;
+        gameControls();
+        while(!gameRestart) {
+            this.reStartKey.draw();
+        }
+        this.reStartKey.delete();
+
+        start();
     }
 
     public void start() {
@@ -45,13 +75,12 @@ public class Game implements KeyboardHandler {
         player.start();
         while (!enemyDead && !playerDead) {
 
-
             if (enemy1.getHealth() > 0) {
                 enemy = enemy1;
                 enemy.start();
-            /*} else if (enemy2.getHealth() > 0) {
+            } else if (enemy2.getHealth() > 0) {
                 enemy = enemy2;
-                enemy.start();*/
+                enemy.start();
             } else if (enemy3.getHealth() > 0) {
                 enemy = enemy3;
                 enemy.start();
@@ -64,11 +93,13 @@ public class Game implements KeyboardHandler {
                 enemy.setHealth(enemy.getHealth() - 1);
                 System.out.println("Enemy health: " + enemy.getHealth());
                 enemyHit = false;
+                reStart();
             }
 
             if (playerHit) {
                 player.setHealth(player.getHealth() - 1);
                 playerHit = false;
+                reStart();
             }
             if (player.getHealth() < 0) {
                 playerDead = true;
@@ -80,39 +111,6 @@ public class Game implements KeyboardHandler {
             //System.out.println(enemy1.getHealth());
             //System.out.println(player.getHealth());
         }
-    }
-
-
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        switch (keyboardEvent.getKey()) {
-            case KeyboardEvent.KEY_R:
-                reStart();
-                reStartKey.delete();
-                this.player.setHealth(3);
-                start();
-                break;
-            case KeyboardEvent.KEY_S:
-                start();
-                startKey.delete();
-                break;
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-    }
-
-    public void init() {
-        this.startKey = new Picture(field.getx(), field.getY(), "");
-        this.startKey.draw();
-        gameControls();
-    }
-
-    public void reStart() {
-        this.reStartKey = new Picture(field.getx(), field.getY(), "");
-        this.reStartKey.draw();
-        gameControls();
     }
 
     public void gameControls() {
@@ -127,6 +125,27 @@ public class Game implements KeyboardHandler {
         keyboard.addEventListener(reStart);
     }
 
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_R:
+                if(!gameRestart) {
+                    this.player.setHealth(3);
+                    this.gameRestart = true;
+                }
+                break;
+            case KeyboardEvent.KEY_S:
+                if(!gameStart) {
+                    this.gameStart = true;
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+    }
 
 }
 

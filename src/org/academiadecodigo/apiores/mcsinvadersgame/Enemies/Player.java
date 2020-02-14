@@ -30,6 +30,7 @@ public class Player implements KeyboardHandler {
         //this.height = 50;
         this.bullets = new Bullet[10];
         this.bulletCounter = 0;
+        this.player = new Picture(this.x, this.y,"resources/Player/player.png");
         /*for(int i = 0; i < bulletCounter; i++){
             bullets[i] = new Bullet(player.getX() + (player.getWidth()/2) , player.getY() + player.getHeight(), this.field);
         }*/
@@ -44,7 +45,6 @@ public class Player implements KeyboardHandler {
     }
 
     public void start() {
-        this.player = new Picture(this.x, this.y,"resources/player.png");
         this.player.draw();
         init();
     }

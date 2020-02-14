@@ -17,27 +17,27 @@ public class Field {
     public Field(double width, double height){
         this.width = width;
         this.height = height;
+        field = new Picture(PADDING,PADDING,"resources/GameImages/background.png");
     }
 
     public void init(){
-        this.field = new Picture(PADDING,PADDING,"resources/background.png");
-        this.field.draw();
+        field.draw();
     }
 
     public double getHeight() {
-        return height;
+        return field.getHeight();
     }
 
     public double getWidth() {
-        return width;
+        return field.getWidth();
     }
 
-    public double getx(){
-        return this.field.getX();
+    public double getX(){
+        return field.getX();
     }
 
     public double getY(){
-        return this.field.getY();
+        return field.getY();
     }
 
 }

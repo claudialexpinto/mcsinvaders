@@ -28,7 +28,7 @@ public class Soraia extends Boss{
         this.width = 50;
         this.height = 25;
         this.movement = true;
-        this.enemy = new Picture(this.x, this.y, "resources/SoraiaNormal.png");
+        this.enemy = new Picture(this.x, this.y, "resources/Enemies/Soraia/SoraiaNormal.png");
     }
     public void start() {
         this.enemy.draw();
@@ -62,7 +62,7 @@ public class Soraia extends Boss{
             return;
         }
         if (!movement) { //LEFT
-            if (enemy.getX() <= field.getx() + random + 15) {
+            if (enemy.getX() <= field.getX() + random + 15) {
                 enemy.draw();
                 movement = true;
                 return;

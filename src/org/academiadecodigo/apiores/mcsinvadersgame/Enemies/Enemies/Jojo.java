@@ -29,7 +29,7 @@ public class Jojo extends Boss{
         //this.width = 50;
         //this.height = 25;
         this.movement = true;
-        this.enemy = new Picture(this.x, this.y, "resources/jojoNormal.png");
+        this.enemy = new Picture(this.x, this.y, "resources/Enemies/Jojo/jojoNormal.png");
         //for(int i = 0; i < bulletCounter; i++){
           //  bullets[i] = new Bullet(enemy1.getX() + (enemy1.getWidth()/2) , enemy1.getY() + enemy1.getHeight(), this.field);
         //}
@@ -82,7 +82,7 @@ public class Jojo extends Boss{
         }
 
         if(!movement){ //LEFT
-            if(enemy.getX() <= this.field.getx() + 100){
+            if(enemy.getX() <= this.field.getX() + 100){
                 movement = true;
                 return;
             } else {
