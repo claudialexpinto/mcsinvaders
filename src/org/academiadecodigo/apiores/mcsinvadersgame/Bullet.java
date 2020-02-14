@@ -15,8 +15,8 @@ public class Bullet {
 
     public Bullet(int x, int y, Field field) {
         this.field = field;
-        this.bullet = new Picture(x, y, "resources/Bullet/laserRed.png");
-        this.bullet2 = new Picture(x, y, "resources/Bullet/laserGreen.png");
+        this.bullet = new Picture(x, y, "resources/Enemies/laserRed.png");
+        this.bullet2 = new Picture(x, y, "resources/Players/laserGreen.png");
 
         this.x = x;
         this.y = y;

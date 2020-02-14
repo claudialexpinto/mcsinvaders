@@ -63,8 +63,7 @@ public class Game implements KeyboardHandler {
             this.reStartKey.draw();
         }
         this.reStartKey.delete();
-
-        start();
+        init();
     }
 
     public void start() {
@@ -96,7 +95,6 @@ public class Game implements KeyboardHandler {
             if (enemyHit) {
                 enemy.setHealth(enemy.getHealth() - 1);
                 enemyHit = false;
-
             }
 
             if (playerHit) {
