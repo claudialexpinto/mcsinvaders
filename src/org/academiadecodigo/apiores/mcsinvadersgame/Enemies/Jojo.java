@@ -1,6 +1,6 @@
 package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.*;
+import org.academiadecodigo.apiores.mcsinvadersgame.Bullet;
 import org.academiadecodigo.apiores.mcsinvadersgame.Directions;
 import org.academiadecodigo.apiores.mcsinvadersgame.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
