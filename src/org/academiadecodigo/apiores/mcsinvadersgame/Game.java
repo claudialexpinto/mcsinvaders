@@ -41,7 +41,8 @@ public class Game implements KeyboardHandler {
         this.gameRestart = false;
         this.startKey = new Picture(field.getX(), field.getY(), "resources/GameImages/MAIN MENU.png");
         this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/GameOver.png");
-
+        Sound music = new Sound(" resources/Music/[Electro] - Tut Tut Child - Hot Pursuit [Monstercat Release].wav");
+        music.setLoop(50);
     }
 
     public void init() {

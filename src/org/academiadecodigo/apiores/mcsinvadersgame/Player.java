@@ -98,6 +98,8 @@ public class Player implements KeyboardHandler {
     }
 
     public void shot(){
+        Sound laser = new Sound(" resources/Music/Laser Gun Sound Effect (1).wav");
+        laser.play(true);
         if(bulletCounter == 9){
             bulletCounter = 0;
         }
