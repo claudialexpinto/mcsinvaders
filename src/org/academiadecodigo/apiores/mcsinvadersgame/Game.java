@@ -39,8 +39,8 @@ public class Game implements KeyboardHandler {
         this.playerDead = false;
         this.gameStart = false;
         this.gameRestart = false;
-        this.startKey = new Picture(field.getX(), field.getY(), "resources/GameImages/press enter to start.png");
-        this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/press r to restart.png");
+        this.startKey = new Picture(field.getX(), field.getY(), "resources/GameImages/MAIN MENU.png");
+        this.reStartKey = new Picture(field.getX(), field.getY(), "resources/GameImages/GameOver.png");
 
     }
 
@@ -63,7 +63,7 @@ public class Game implements KeyboardHandler {
             this.reStartKey.draw();
         }
         this.reStartKey.delete();
-        init();
+        start();
     }
 
     public void start() {
