@@ -1,7 +1,7 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies.Boss;
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies.Jojo;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Boss;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Jojo;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bullet {

@@ -1,6 +1,7 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies.*;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.*;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.*;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -85,22 +86,25 @@ public class Game implements KeyboardHandler {
             } else if (enemy4.getHealth() > 0) {
                 enemy = enemy4;
                 enemy.start();
+            } else if (enemy4.getHealth() <= 0){
+                reStart();
             }
 
             if (enemyHit) {
                 enemy.setHealth(enemy.getHealth() - 1);
                 System.out.println("Enemy health: " + enemy.getHealth());
                 enemyHit = false;
-                reStart();
+
             }
 
             if (playerHit) {
                 player.setHealth(player.getHealth() - 1);
                 playerHit = false;
-                reStart();
+
             }
-            if (player.getHealth() < 0) {
+            if (player.getHealth() <= 0) {
                 playerDead = true;
+                reStart();
             }
 
             //enemy4.start();

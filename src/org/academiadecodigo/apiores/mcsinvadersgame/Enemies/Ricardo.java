@@ -1,8 +1,8 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Bullet;
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Directions;
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Field;
+import org.academiadecodigo.apiores.mcsinvadersgame.Bullet;
+import org.academiadecodigo.apiores.mcsinvadersgame.Directions;
+import org.academiadecodigo.apiores.mcsinvadersgame.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Ricardo extends Boss{
     private Picture enemy;
@@ -28,7 +28,7 @@ public class Ricardo extends Boss{
         //this.width = 50;
         //this.height = 25;
         this.movement = true;
-        this.enemy = new Picture(this.x, this.y, "resources/rickyMoveRightN.png");
+        this.enemy = new Picture(this.x, this.y, "resources/Enemies/Ricardo/rickyMoveRightN.png");
         //for(int i = 0; i < bulletCounter; i++){
         //  bullets[i] = new Bullet(enemy1.getX() + (enemy1.getWidth()/2) , enemy1.getY() + enemy1.getHeight(), this.field);
         //}
@@ -86,7 +86,7 @@ public class Ricardo extends Boss{
 
         if(!movement){ //LEFT
             enemy.delete();
-            if(enemy.getX() <= this.field.getx() + 100){
+            if(enemy.getX() <= this.field.getX() + 100){
                 movement = true;
                 return;
             } else {
