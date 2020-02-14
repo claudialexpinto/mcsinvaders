@@ -88,7 +88,7 @@ public class Soraia extends Boss{
 
             if(!movement){ //LEFT
                 enemy.delete();
-                if(enemy.getX() <= this.field.getX() + random){
+                if(enemy.getX() <= this.field.getX() + 300){
                     movement = true;
                     return;
                 } else {

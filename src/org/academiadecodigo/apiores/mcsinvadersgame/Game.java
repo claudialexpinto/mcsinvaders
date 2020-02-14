@@ -29,10 +29,10 @@ public class Game implements KeyboardHandler {
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
-        this.enemy1 = new Jojo(3, this.field, 700, 50);
-        this.enemy2 = new Rita(3, this.field, 700, 50);
-        this.enemy3 = new Ricardo(3, this.field, 700, 50);
-        this.enemy4 = new Soraia(3, this.field, 700, 50);
+        this.enemy3 = new Jojo(15, this.field, 700, 50);
+        this.enemy1 = new Rita(5, this.field, 700, 50);
+        this.enemy2 = new Ricardo(8, this.field, 700, 50);
+        this.enemy4 = new Soraia(20, this.field, 700, 50);
         this.player = new Player(this.field);
         this.keyboard = new Keyboard(this);
         this.enemyDead = false;
@@ -46,51 +46,60 @@ public class Game implements KeyboardHandler {
     }
 
     public void init() {
+
         this.gameStart = false;
         gameControls();
         while (!gameStart) {
             this.startKey.draw();
         }
-        this.startKey.delete();
+       this.startKey.delete();
 
         start();
 
     }
 
     public void reStart() {
+
         this.gameRestart = false;
         gameControls();
         while (!gameRestart) {
             this.reStartKey.draw();
         }
         this.reStartKey.delete();
-        start();
+
+        init();
+
     }
 
     public void start() {
         field.init();
         //  while(true) {
         player.start();
+
         while (!enemyDead && !playerDead) {
 
             if (enemy1.getHealth() > 0) {
                 enemy = enemy1;
                 enemy.start();
+
             } else if (enemy2.getHealth() > 0) {
                 this.enemy.getEnemy().delete();
                 enemy = enemy2;
                 enemy.start();
+
             } else if (enemy3.getHealth() > 0) {
                 this.enemy.getEnemy().delete();
                 enemy = enemy3;
                 enemy.start();
+
             } else if (enemy4.getHealth() > 0) {
                 this.enemy.getEnemy().delete();
                 enemy = enemy4;
                 enemy.start();
+
             } else if (enemy.getHealth() <= 0) {
                 this.enemy.getEnemy().delete();
-                reStart();
+
             }
 
             if (enemyHit) {
@@ -105,12 +114,16 @@ public class Game implements KeyboardHandler {
             }
             if (player.getHealth() <= 0) {
                 playerDead = true;
-                reStart();
+                player.getPlayer().delete();
+
             }
 
             player.shot();
-
         }
+
+        playerDead=false;
+        player.setHealth(3);
+        reStart();
     }
 
     public void gameControls() {
@@ -131,12 +144,16 @@ public class Game implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_R:
                 if (!gameRestart) {
-                    this.player.setHealth(3);
                     this.gameRestart = true;
                 }
                 break;
             case KeyboardEvent.KEY_S:
                 if (!gameStart) {
+                   /* this.player = new Player(this.field);
+                    this.enemy3 = new Jojo(15, this.field, 700, 50);
+                    this.enemy1 = new Rita(5, this.field, 700, 50);
+                    this.enemy2 = new Ricardo(8, this.field, 700, 50);
+                    this.enemy4 = new Soraia(20, this.field, 700, 50);*/
                     this.gameStart = true;
                 }
                 break;

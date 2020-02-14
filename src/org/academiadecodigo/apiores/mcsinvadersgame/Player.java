@@ -36,6 +36,10 @@ public class Player implements KeyboardHandler {
         }*/
     }
 
+    public void setBulletCounter(int bulletCounter) {
+        this.bulletCounter = bulletCounter;
+    }
+
     public int getHealth() {
         return health;
     }
