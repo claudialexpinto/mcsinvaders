@@ -1,7 +1,7 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies.Boss;
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies.Jojo;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Boss;
+import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Jojo;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bullet {
@@ -15,8 +15,8 @@ public class Bullet {
 
     public Bullet(int x, int y, Field field) {
         this.field = field;
-        this.bullet = new Picture(x, y, "resources/Bullet/laserRed.png");
-        this.bullet2 = new Picture(x, y, "resources/Bullet/laserGreen.png");
+        this.bullet = new Picture(x, y, "resources/Enemies/laserRed.png");
+        this.bullet2 = new Picture(x, y, "resources/Players/laserGreen.png");
 
         this.x = x;
         this.y = y;

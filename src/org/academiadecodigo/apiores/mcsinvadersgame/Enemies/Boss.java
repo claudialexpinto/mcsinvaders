@@ -1,6 +1,6 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Bullet;
+import org.academiadecodigo.apiores.mcsinvadersgame.Bullet;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Boss {

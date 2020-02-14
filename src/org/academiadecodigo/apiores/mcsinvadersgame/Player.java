@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -21,7 +21,7 @@ public class Player implements KeyboardHandler {
 
 
     public Player(Field field) {
-        this.health = 100;
+        this.health = 3;
         this.field = field;
         this.keyboard = new Keyboard(this);
         this.x = 644;
@@ -30,7 +30,7 @@ public class Player implements KeyboardHandler {
         //this.height = 50;
         this.bullets = new Bullet[10];
         this.bulletCounter = 0;
-        this.player = new Picture(this.x, this.y,"resources/Player/player.png");
+        this.player = new Picture(this.x, this.y,"resources/Players/player.png");
         /*for(int i = 0; i < bulletCounter; i++){
             bullets[i] = new Bullet(player.getX() + (player.getWidth()/2) , player.getY() + player.getHeight(), this.field);
         }*/

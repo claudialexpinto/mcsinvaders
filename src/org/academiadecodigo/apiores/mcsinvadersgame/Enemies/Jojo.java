@@ -1,10 +1,11 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
 
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Bullet;
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Directions;
-import org.academiadecodigo.apiores.mcsinvadersgame.Enemies.Field;
+import org.academiadecodigo.apiores.mcsinvadersgame.Bullet;
+import org.academiadecodigo.apiores.mcsinvadersgame.Directions;
+import org.academiadecodigo.apiores.mcsinvadersgame.Field;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-public class Rita extends Boss{
+
+public class Jojo extends Boss{
     private Picture enemy;
     private int health;
     private boolean dead;
@@ -13,11 +14,11 @@ public class Rita extends Boss{
     private int bulletCounter;
     private int x;
     private int y;
-    private int width;
-    private int height;
+    //private int width;
+    //private int height;
     private boolean movement;
 
-    public Rita(int health, Field field, int x, int y) {
+    public Jojo(int health, Field field, int x, int y) {
         this.health = health;
         this.field = field;
         this.dead = false;
@@ -28,10 +29,9 @@ public class Rita extends Boss{
         //this.width = 50;
         //this.height = 25;
         this.movement = true;
-        this.enemy = new Picture(this.x, this.y, "resources/Enemies/Rita/ritaNormal.png");
-        this.enemy = new Picture(this.x, this.y, "resources/ritaNormal.png");
+        this.enemy = new Picture(this.x, this.y, "resources/Enemies/Jojo/jojoNormal.png");
         //for(int i = 0; i < bulletCounter; i++){
-        //  bullets[i] = new Bullet(enemy1.getX() + (enemy1.getWidth()/2) , enemy1.getY() + enemy1.getHeight(), this.field);
+          //  bullets[i] = new Bullet(enemy1.getX() + (enemy1.getWidth()/2) , enemy1.getY() + enemy1.getHeight(), this.field);
         //}
     }
 
@@ -47,12 +47,12 @@ public class Rita extends Boss{
 
     public void start() {
         this.enemy.draw();
-        int random = (int) (Math.ceil(Math.random()*20));
-        //System.out.println(random);
-        if(random >7) {
-            shootBack();
-            move();
-        }
+            int random = (int) (Math.ceil(Math.random()*20));
+            //System.out.println(random);
+            if(random >10) {
+                shootBack();
+                move();
+            }
     }
 
     public void shootBack() {
@@ -66,15 +66,15 @@ public class Rita extends Boss{
 
     public void move(){
         if(movement){ // RIGHT
-            if(enemy.getX() >= this.field.getWidth() - (enemy.getWidth()+100)){
+            if(enemy.getX() > this.field.getWidth() - enemy.getWidth()){
                 enemy.draw();
                 movement = false;
                 return;
             } else {
                 try{
                     Thread.sleep(10);
-                    enemy.translate(200, 0);
-                    x += 200;
+                    enemy.translate(100, 0);
+                    x += 100;
                     enemy.draw();
                 }catch (InterruptedException ex){
                     System.out.println(ex.getMessage());
@@ -85,14 +85,14 @@ public class Rita extends Boss{
 
         if(!movement){ //LEFT
             enemy.delete();
-            if(enemy.getX() - 200 <= this.field.getx()){
+            if(enemy.getX() <= this.field.getX() + 100){
                 movement = true;
                 return;
             } else {
                 try{
                     Thread.sleep(10);
-                    enemy.translate(-200, 0);
-                    x -= 200;
+                    enemy.translate(-100, 0);
+                    x -= 100;
                     enemy.draw();
                 }catch (InterruptedException ex){
                     System.out.println(ex.getMessage());
@@ -132,3 +132,4 @@ public class Rita extends Boss{
         this.enemy = enemy;
     }
 }
+

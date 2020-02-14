@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.mcsinvadersgame.Enemies;
+package org.academiadecodigo.apiores.mcsinvadersgame;
 
 public class Main {
 
