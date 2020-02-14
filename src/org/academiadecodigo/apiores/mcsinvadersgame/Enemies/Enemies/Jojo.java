@@ -53,6 +53,8 @@ public class Jojo extends Boss{
                 shootBack();
                 move();
             }
+
+
     }
 
     public void shootBack() {
@@ -84,6 +86,7 @@ public class Jojo extends Boss{
         }
 
         if(!movement){ //LEFT
+            enemy.delete();
             if(enemy.getX() <= this.field.getx() + 100){
                 movement = true;
                 return;

@@ -12,9 +12,9 @@ public class Game implements KeyboardHandler {
     public static Player player;
     private Field field;
     public static Boss enemy1;
-    private static Boss enemy2;
-    private Boss enemy3;
-    private Boss enemy4;
+    public static Boss enemy2;
+    public static Boss enemy3;
+    public static Boss enemy4;
     private Keyboard keyboard;
     private boolean enemyDead;
     private boolean playerDead;
@@ -25,16 +25,14 @@ public class Game implements KeyboardHandler {
 
     public Game(double width, double height) {
         this.field = new Field(width, height);
-        this.enemy1 = new Jojo(10, this.field, 700, 50);
+        this.enemy1 = new Jojo(3, this.field, 700, 50);
         this.enemy2 = new Rita(3, this.field, 700, 50);
-        this.enemy3 = new Ricardo(10, this.field, 700, 50);
-        this.enemy4 = new Soraia(15, this.field, 700, 50);
+        this.enemy3 = new Ricardo(3, this.field, 700, 50);
+        this.enemy4 = new Soraia(3, this.field, 700, 50);
         this.player = new Player(this.field);
         this.keyboard = new Keyboard(this);
         this.enemyDead = false;
         this.playerDead = false;
-        this.boss = 1;
-        this.enemy = enemy1;
     }
 
     public void start() {
@@ -43,13 +41,12 @@ public class Game implements KeyboardHandler {
         player.start();
         while (!enemyDead && !playerDead) {
 
-
             if (enemy1.getHealth() > 0) {
                 enemy = enemy1;
                 enemy.start();
-            /*} else if (enemy2.getHealth() > 0) {
+            } else if (enemy2.getHealth() > 0) {
                 enemy = enemy2;
-                enemy.start();*/
+                enemy.start();
             } else if (enemy3.getHealth() > 0) {
                 enemy = enemy3;
                 enemy.start();
@@ -59,6 +56,13 @@ public class Game implements KeyboardHandler {
             }
 
             if (enemyHit) {
+                /*if(enemy1.getHealth() == 0){
+                    enemy1.setHealth(enemy1.getHealth()-1);
+                    enemyHit = false;
+                } else if(enemy2.getHealth() == 0){
+                    enemy2.setHealth(enemy2.getHealth()-1);
+                    enemyHit = false;
+                }*/
                 enemy.setHealth(enemy.getHealth() - 1);
                 System.out.println("Enemy health: " + enemy.getHealth());
                 enemyHit = false;
