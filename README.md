@@ -2,10 +2,10 @@ MCInvaders consists in a Space Invaders like game where you control a team ship 
 
 MCInvaders Members:
 
-  Bruno Lopes <Crack an reassemble sir_>
-  Cláudia Pinto <Miss organize it all_>
-  Fábio Martins <The mechanics boy_>
-  Francisco Carreiro <Front-end god_>
+  Bruno Lopes - Crack an reassemble sir
+  Cláudia Pinto - Miss organize it all
+  Fábio Martins - The mechanics boy
+  Francisco Carreiro - Front-end god
 
 ---------------------------------------------------------------------
 
