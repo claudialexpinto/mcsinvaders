@@ -1,11 +1,14 @@
 MCInvaders consists in a Space Invaders like game where you control a team ship and need to take down the 4 bosses (MCInvaders).
 
 MCInvaders Members:
+
 Bruno Lopes <Crack an reassemble sir_>
 Cláudia Pinto <Miss organize it all_>
 Fábio Martins <The mechanics boy_>
 Francisco Carreiro <Front-end god_>
+
 ---------------------------------------------------------------------
+
 Main technologies used: Java, SimpleGFX, Photoshop, Illustrator.
 
 This game results as a week's project and was our first group work as Code Cadets at Academia de Código.
